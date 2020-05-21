@@ -1,0 +1,91 @@
+#include <iostream>
+#include <omp.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <algorithm>
+#include <vector>
+#include <time.h>
+#include <windows.h>
+
+using namespace std;
+
+long long head, freq, tail; // timers
+const int ARR_NUM = 10000;
+const int ARR_LEN = 10000;
+vector<int> arr[ARR_NUM];
+
+void init()
+{
+    int ratio;
+    srand(unsigned(time(nullptr)));
+    for (int i = 0; i < ARR_NUM; i++)
+    {
+        arr[i].resize(ARR_LEN);
+        if (i < 2500)
+            ratio = 0;
+        else if (i < 5000)
+            ratio = 32;
+        else if (i < 7500)
+            ratio = 64;
+        else
+            ratio = 128;
+        if ((rand() & 127) < ratio)
+            for (int j = 0; j < ARR_LEN; j++)
+                arr[i][j] = ARR_LEN - j;
+        else
+            for (int j = 0; j < ARR_LEN; j++)
+                arr[i][j] = j;
+    }
+}
+
+int main(int argc, char* argv[])
+{
+    int p;
+    QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
+    int thread_count;
+    thread_count = strtol(argv[1], NULL, 10);
+    init();
+    cout<<"请输入数字：1代表串行；2代表静态块划分；3代表动态划分dynamic；4代表动态划分guided"<<endl;
+    cin>>p;
+    switch(p)
+    {
+    case 1:
+        QueryPerformanceCounter((LARGE_INTEGER *)&head);
+        for (int i = 0; i < ARR_NUM; i++)
+            stable_sort(arr[i].begin(), arr[i].end());
+        QueryPerformanceCounter((LARGE_INTEGER *)&tail);
+        printf("串行执行时间：%lfms.\n", (tail - head) * 1000.0 / freq);
+        break;
+    case 2:
+
+        QueryPerformanceCounter((LARGE_INTEGER *)&head);
+        #pragma omp parallel for num_threads(thread_count) schedule(static, 1000)
+        for (int i = 0; i < ARR_NUM; i++)
+            stable_sort(arr[i].begin(), arr[i].end());
+        QueryPerformanceCounter((LARGE_INTEGER *)&tail);
+        printf("静态块划分执行时间：%lfms.\n", (tail - head) * 1000.0 / freq);
+        break;
+    case 3:
+        QueryPerformanceCounter((LARGE_INTEGER *)&head);
+        #pragma omp parallel for num_threads(thread_count) schedule(dynamic, 5)
+        for (int i = 0; i < ARR_NUM; i++)
+            stable_sort(arr[i].begin(), arr[i].end());
+        QueryPerformanceCounter((LARGE_INTEGER *)&tail);
+        printf("动态划分（dynamic）执行时间：%lfms.\n", (tail - head) * 1000.0 / freq);
+        break;
+    case 4:
+        QueryPerformanceCounter((LARGE_INTEGER *)&head);
+        #pragma omp parallel for num_threads(thread_count) schedule(guided, 1000)
+        for (int i = 0; i < ARR_NUM; i++)
+            stable_sort(arr[i].begin(), arr[i].end());
+        QueryPerformanceCounter((LARGE_INTEGER *)&tail);
+        printf("动态划分（guided）执行时间：%lfms.\n", (tail - head) * 1000.0 / freq);
+        break;
+    default:
+        cout<<"输入错误！"<<endl;
+    }
+    return 0;
+}
+
+
+ omp parallel num_threads(thread_count)
