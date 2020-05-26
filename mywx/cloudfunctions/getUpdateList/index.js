@@ -6,18 +6,30 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 
+const friend_list = cloud.callFunction({
+  name: 'getFriendList',
+  data: {
+    user_id: event.user_id
+  }
+})
+
 // 云函数入口函数
 
 exports.main = async (event, context) => {
-  return await db.collection('Diaries').aggregate()
+  return await db.collection('Diaries')
+  .aggregate()
   .lookup({
-    from: 'Friends',
+    from: 'friend_list',
     localField: 'user_id',
     foreignField: 'friend_id',
     as: 'UpdateList'
   })
   .orderBy('time', 'desc')
-  .end()
+  .get({
+    success: function (res) {
+      return res
+    }
+  })
   .then(res => console.log(res))
   .catch(e => console.error(e))
 }
