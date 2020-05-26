@@ -19,10 +19,6 @@ exports.main = async (event, context) => {
       from_id: friend_id,
       to_id: my_id
     }).remove()
-  } catch (e) {
-    console.error(e)
-  }
-  try {
     return await db.collection("Friends").add({
       data: {
         my_id: my_id,
