@@ -10,8 +10,7 @@ const _ = db.command
 
 exports.main = async (event, context) => {
   try {
-    return await db.collection('Friends')
-      .where({
+    return await db.collection('Friends').where({
         my_id: event.user_id
       })
       .orderBy('remark', 'desc')
