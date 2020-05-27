@@ -20,7 +20,7 @@ display: flex;
 align-items: center;
 text-align: center;
 color: #980065;
-margin-top: 150rpx;
+margin-top: 50rpx;
 margin-bottom: 90rpx;
 }
 

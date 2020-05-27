@@ -56,12 +56,16 @@ tofriendDiary(e){
    })
   },
 
-
-
+/**添加好友 */
+newFriend:function(e){
+  wx.navigateTo({
+    url: '../message/message',
+  })
+  },
 
 
 /****查找好友 */
-  newFriend:function(e){
+  findFriend:function(e){
     this.setData({
       showFind:true,
      })

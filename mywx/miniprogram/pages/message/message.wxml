@@ -1,0 +1,61 @@
+<view>
+	<view wx:for="{{newFriend}}" class="friends" wx:for-item="newFriend" wx:key="index">
+		<view>
+			<image data-index="{{index}}"  class="head" src="../../images/code-cloud-callback-config.png">
+			</image>
+		</view>
+		<view style="flex-direction:column" >
+			<view  class="name"><text class="friends-info">{{newFriend.nickname}}({{newFriend.name}})</text></view>
+			<view class="name" ><text class="friends-info">{{newFriend.status}}</text></view>
+		</view>
+		<view class="update-container">
+			<button wx:if='{{newFriend.new_message}}' data-index="{{index}}" class="update-button"  style="width:180rpx" bindtap='eject'>同意</button></view>
+		<view  class="update-container">
+     <button wx:if='{{newFriend.new_message}}' data-index="{{index}}" class="update-button" style="width:180rpx" bindtap='deleteFriend'>拒绝</button></view>
+	</view>
+</view>
+
+
+
+<view>
+	<view wx:for="{{refFriend}}" class="friends" wx:for-item="refFriend" wx:key="index">
+		<view>
+			<image data-index="{{index}}"  bindtap="tofriendDiary" class="head" src="../../images/code-cloud-callback-config.png">
+			</image>
+		</view>
+		<view style="flex-direction:column" >
+			<view  class="name"><text class="friends-info">{{refFriend.nickname}}({{refFriend.name}})</text></view>
+			<view class="name" ><text class="friends-info">拒绝了你的请求</text></view>
+		</view>
+	</view>
+</view>
+
+
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+	<view class='windowRow'>
+		<text class='userTitle'>修改好友备注</text>
+		<view class='back' bindtap='back'>返回</view>
+	</view>
+	<view class='wishName'>
+		<input bindinput='wish_put' placeholder='{{index}}' class='wish_put'></input>
+	</view>
+	<view class='wishbnt'>
+		<button class='wishbnt_bt' bindtap='ok'>确定</button>
+	</view>
+</view>
+
+
+
+
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showDelete}}'>
+	<view class='windowRow'>
+		<text class='userTitle'>确定拒绝好友？
+ </text>
+		<view class='back' bindtap='del_back'>
+			返回
+		</view>
+	</view>
+	<view class='wishbnt'>
+		<button class='wishbnt_bt' bindtap='del_ok'>确定</button>
+	</view>
+</view>
