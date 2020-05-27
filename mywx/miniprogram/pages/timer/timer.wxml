@@ -1,0 +1,15 @@
+<!--miniprogram/pages/timer/timer.wxml-->
+<view wx:for="{{times}}" wx:for-item="times" wx:key="index">
+	<view class="main-body" bindtap="totimer_detail" data-index="{{index}}">
+		<view class="date-body">
+			<view style="margin-top:15rpx">
+				<text>{{times.diary_date}}</text>
+			</view>
+			<view style="margin-top:15rpx">
+				<text>{{times.weather}}</text>
+			</view>
+		</view>
+		<view class='line' style="margin-top:-15rpx"></view>
+		<view class="title"><text>{{times.title}}</text></view>
+	</view>
+</view>

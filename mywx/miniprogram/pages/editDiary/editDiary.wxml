@@ -1,0 +1,48 @@
+<view class='main'>
+	<form bindsubmit="formSubmit">
+		<!-- 图片 -->
+		<view class="images_box">
+			<block wx:key="imgbox" wx:for="{{imgbox}}">
+				<view class='img-box'>
+					<image class='img' src='{{imgbox}}'></image>
+					<view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
+						<image class='img' src='../../images/delimg.jpg'></image>
+					</view>
+				</view>
+			</block>
+			<view class='img-box' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
+				<image class='img' src='../../images/addimage.jpg'></image>
+			</view>
+		</view>
+
+
+		<view class="item">
+			<picker name="diary_date" mode="date" value="{{diary_date}}" start="1999-01-01" end="2999-12-12" bindchange="datePickerBindchange">{{diary_date}}
+			</picker>
+		</view>
+		<view class="item" style="display:flex;flex-direction: row;">
+			时光机
+			<switch class="select"  checked="{{times}}" name="times" bindchange="switch1Change" />
+
+			<view hidden="{{isChecked1}}">
+				<picker mode="date" name="year" value="{{year}}" start="1999-01-01" end="2999-12-12" bindchange="timerPickerBindchange">{{year}}
+				</picker>
+			</view>
+		</view>
+		<view class="item">公开
+			<switch name="authority" checked="{{authority}}" bindchange="switch2Change" />
+		</view>
+		<view class="item" style="display:flex;flex-direction: row;">
+			<input type="text" name="weather" placeholder="{{weather}}" placeholder-style="font-family: cursive;" />
+			<input type="text" placeholder="{{mood}}" name="mood" placeholder-style="font-family: cursive;" />
+		</view>
+		<view class='card-container'></view>
+		<view class="item"><input type="text" name="title" placeholder="{{title}}" placeholder-style="font-family: cursive;" /></view>
+		<scroll-view scroll-y="true">
+			<view class="main-body">
+				<textarea maxlength='-1' type="text" name="content" class="main-text" placeholder="{{content}}" placeholder-style="font-family: cursive;" />
+				</view>
+		</scroll-view>
+		<button bindtap='fb' formType="submit">写完啦</button>
+	</form>
+</view>

@@ -1,0 +1,17 @@
+/* miniprogram/pages/callme/callme.wxss */
+.container{
+  text-align: center;
+  width:100%;
+  height:100%;
+  padding-top: 100rpx;
+}
+.txt{
+
+font-family:cursive;
+font-style: normal;
+font-weight: normal;
+font-size: 45rpx;
+line-height: 45px;
+color: #980065;
+
+}

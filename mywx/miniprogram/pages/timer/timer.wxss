@@ -1,0 +1,28 @@
+page{
+  font-family: cursive;
+}
+.main-body{
+  height:180rpx;
+  border: 0.5rpx solid #aaa;
+border-radius: 15px;
+margin-left: 5%;
+padding-left:5%;
+margin-right: 5%;
+padding-right:5%;
+margin-top:30rpx;
+
+}
+.line{
+  margin: 0 auto;
+  width: 100%;
+  height: 2rpx;
+  background-color: #D8D8D8;
+}
+.date-body{
+  height:120rpx;
+  font-size: 34rpx;
+}
+.title{
+  font-size: 36rpx;
+  margin-top:15rpx
+}
