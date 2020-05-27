@@ -1,15 +1,17 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/message/message",
+    "pages/friendslist/friendslist",
+
     "pages/timer-detail/timer-detail",
     "pages/timer/timer",
     "pages/userInfo/userInfo",
     "pages/writeDiary/writeDiary",
     "pages/diary/diary",
-    "pages/friendslist/friendslist",
-    "pages/callme/callme",
     "pages/friendDiary/friendDiary",
-    "pages/editDiary/editDiary"
+    "pages/editDiary/editDiary",
+    "pages/callme/callme"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

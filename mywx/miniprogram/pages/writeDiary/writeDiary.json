@@ -2,7 +2,7 @@
   "usingComponents": {},
   "backgroundColor": "#F6F6F6",
    "backgroundTextStyle": "light",
-   "navigationBarBackgroundColor": "#F6F6F6",
+   "navigationBarBackgroundColor": "#F0ADE6",
    "navigationBarTitleText": "新日记",
    "navigationBarTextStyle": "black"
 }

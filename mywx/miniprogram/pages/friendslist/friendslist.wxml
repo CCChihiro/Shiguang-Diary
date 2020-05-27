@@ -15,7 +15,10 @@
 		<view  class="update-container">
      <button data-index="{{index}}" class="update-button" style="width:180rpx" bindtap='deleteFriend'>删除</button></view>
 	</view>
-	<view> <button class="update-button" bindtap='newFriend'>查找好友</button></view>
+	<view style="flex-direction:row;display:flex" >
+	<view class="new-friend-container"> <button class="new-friend-button" bindtap='newFriend'>通知列表</button></view>
+		<view class="find-friend-container"> <button class="new-friend-button" bindtap='findFriend'>查找好友</button></view>
+		</view>
 </view>
 
 
