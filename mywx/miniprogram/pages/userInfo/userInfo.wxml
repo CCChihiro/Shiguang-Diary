@@ -1,0 +1,40 @@
+<!--miniprogram/pages/userInfo/userInfo.wxml-->
+
+	<view class="friends">
+		<view>
+			<image class="head" src="../../images/code-cloud-callback-config.png">
+			</image>
+		</view>
+		<view style="flex-direction:column,width:50%">
+			<view><text class="friends-info">{{name}}</text></view>
+			<view><text class="friends-info">{{portrait}}</text></view>
+		</view>
+
+		<view class="update-container">
+			<button data-index="{{index}}" class="update-button" style="width:180rpx" bindtap='eject'>编辑</button>
+			</view>
+	
+	</view>
+
+  <view class="diary-container">
+  <image bindtap="uploadPhoto" class="diary-cover" src="{{cover}}"></image>
+  </view>
+
+
+	<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+	<view class='windowRow'>
+		<text class='userTitle'>修改昵称</text>
+		<view class='back' bindtap='back'>返回</view>
+	</view>
+	<form bindsubmit="formSubmit">
+	<view class='wishName'>
+		<input name="name" placeholder='{{name}}'  placeholder-style='font-family: cursive;' class='wish_put'></input>
+	</view>
+		<view class='wishName'>
+		<input  name="portrait" placeholder='{{portrait}}'  placeholder-style='font-family: cursive;' class='wish_put'></input>
+	</view>
+	<view class='wishbnt'>
+		<button class='wishbnt_bt' formType="submit">确定</button>
+	</view>
+	</form>
+</view>

@@ -1,0 +1,49 @@
+<view class='container'>
+	<view class='card_wrap'>
+		<view class='card_item'  >
+				<view wx:if="{{image!=''}}" class="main-container">
+					<scroll-view scroll-y="true">
+						<view wx:for='{{image}}' class="main-container" wx:for-item="image">
+							<view class="pic-container">
+								<image class="picture" src="{{image}}"></image>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+				<view class="text-container" style="flex-direction:row;display: flex;" >
+					<text>{{diary_date}}</text><text>\t星期？\t</text>		
+		<text data-index="{{index}}"  bindtap='toeditDiary'>\t编辑\t</text>
+     <text data-index="{{index}}"  bindtap='deleteDiary'>\t删除</text>
+				</view>
+				<view class="text-container"><text>{{weather}}</text><text>\t{{mood}}</text></view>
+				<view class="text-container"><text>{{title}}</text></view>
+				<scroll-view scroll-y="true">
+					<view class="main-body">
+						{{content}}
+					</view>
+				</scroll-view>
+				<view>
+				</view>
+			</view>
+		</view>
+
+</view>
+<view class="container-pen">
+	<view class="update-container">
+		<button class="update-button" style="width:180rpx;height:30rpx; background-color:rgb(221, 103, 203);color: #fbf1e8;  border:none;" open-type='share' plain='true'>生成</button>
+	</view>
+</view>
+
+
+
+
+<!--删除日记-->
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showDelete}}'>
+	<view class='windowRow'>
+		<text class='userTitle'>确定删除日记？</text>
+		<view class='back' bindtap='del_back'>返回</view>
+	</view>
+	<view class='wishbnt'>
+		<button class='wishbnt_bt' bindtap='del_ok'>确定</button>
+	</view>
+</view>

@@ -1,0 +1,261 @@
+/* miniprogram/pages/diary/diary.wxss */
+page {
+  height: 100%;
+  font-family: cursive;
+}
+.container {
+  height: 90%;
+}
+.cover{
+width: 100%;
+height: 100%;
+ display:flex;
+ height: 100%;
+ justify-content: center;
+ align-items:center;
+}
+.main-body{
+  height: 300rpx;
+  outline-width: 10rpx;
+  border: 0.5px solid #aaa;
+border-radius: 10px;
+margin-left: 10rpx;
+margin-right: 10rpx;
+padding-top: 10rpx;
+padding-left: 10rpx;
+overflow-wrap: break-word;
+display: -webkit-box;
+text-overflow: ellipsis;
+word-break: break-all;
+-webkit-box-orient: vertical;
+}
+.card-container {
+  width: 100%;
+  background:#aaa;
+  height:1rpx;
+}
+.main-container{
+  height: 400rpx;
+  width: 600rpx;
+  display: flex;
+}
+.pic-container{
+  height: 400rpx;
+  width: 600rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.picture{
+  height: 400rpx;
+  width: 550rpx;
+  border-radius: 10rpx;
+}
+.text-container{
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+.main-text{
+  font-size: 36rpx;
+}
+.container-pen{
+  padding-left: 50rpx;
+  height: 5%;
+  display: flex;  
+  flex-direction: row; 
+}
+.pic-pen{
+  width: 80rpx;
+  height: 80rpx;
+
+}
+.butt-share{
+  height:10rpx;
+  width:200rpx;
+  font-size:24rpx; 
+  
+}
+.update-button{
+  font-size: 32rpx;
+  font-weight: normal;
+  font-weight: 700;
+}
+.update-container{
+  margin-left: 350rpx;
+  margin-right: 40rpx;
+}
+
+
+
+
+.card_wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #f2f2f6;
+
+}
+
+.card_wrap .card_item {
+  position: absolute;
+  width: 80%;
+  height: 85%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 30rpx;
+  background: #fff;
+  border: 2rpx solid #eee;
+  border-radius: 20rpx;
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 5, 1);
+}
+
+.card_item:nth-child(1) {
+  z-index: 100;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(2) {
+  z-index: 99;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(3) {
+  z-index: 98;
+  transform: translateX(-50%) translateY(-51%);
+}
+
+.card_item:nth-child(4) {
+  z-index: 97;
+  transform: translateX(-47%) translateY(-52%);
+}
+.card_item:nth-child(5) {
+  z-index: 96;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(6) {
+  z-index: 95;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(7) {
+  z-index: 94;
+  transform: translateX(-50%) translateY(-51%);
+}
+
+.card_item:nth-child(8) {
+  z-index: 93;
+  transform: translateX(-47%) translateY(-52%);
+}
+.card_item:nth-child(9) {
+  z-index: 92;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(10) {
+  z-index: 91;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(11) {
+  z-index: 90;
+  transform: translateX(-50%) translateY(-51%);
+}
+
+.card_item:nth-child(12) {
+  z-index: 89;
+  transform: translateX(-47%) translateY(-52%);
+}
+.card_item:nth-child(13) {
+  z-index:88;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(14) {
+  z-index: 87;
+  transform: translateX(-53%) translateY(-50%);
+}
+
+.card_item:nth-child(15) {
+  z-index:86;
+  transform: translateX(-50%) translateY(-51%);
+}
+
+.card_item:nth-child(16) {
+  z-index: 85;
+  transform: translateX(-47%) translateY(-52%);
+}
+
+
+
+
+.model{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+  opacity: 0.5;
+  top: 0;
+  left:0;
+ }
+ .modalDlg{
+  width: 70%;
+  position: fixed;
+  top:350rpx;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+ .windowRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 110rpx;
+  width: 100%;
+ }
+ .back{
+  text-align: center;
+  color:#D126B6; 
+  font-size: 30rpx;
+  margin: 30rpx;
+ }
+ .userTitle{
+  font-size: 30rpx;
+  color: #666;
+  margin: 30rpx;
+ }
+ .wishName{
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  margin-bottom: 30rpx;
+ }
+ .wish_put{
+  width: 80%;
+  border: 1px solid;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+ }
+ .wishbnt{
+  width: 100%;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+
+ }
+ .wishbnt_bt{
+  font-size: 30rpx;
+  border: 0;
+  width: 200rpx;
+  background-color: rgb(221, 103, 203);
+  color: #fbf1e8;
+ }

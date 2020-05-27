@@ -1,0 +1,145 @@
+/* miniprogram/pages/writeDiary/writeDiary.wxss */
+page {
+  height: 100%;  
+  width: 100%;
+  font-family: cursive;
+  background-color: white;
+  padding-right: 20rpx;
+}
+.main {
+  height: 100%;
+  padding-left: 20rpx;
+  margin-left: 20rpx;
+  padding-right: 20rpx;
+  margin-right: 20rpx;
+}
+
+.main-body {
+  width: 600rpx;
+  height: 500rpx;
+  outline-width: 10rpx;
+  border: 0.5px solid #aaa;
+  border-radius: 10px;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  padding-top: 10rpx;
+margin-top: 10rpx;
+margin-bottom: 10rpx;
+
+
+
+}
+.item{
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  margin-bottom: 10rpx;
+}
+.card-container {
+  background: #aaa;
+  height: 1rpx;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  margin-bottom: 10rpx;
+}
+
+.main-container {
+  height: 400rpx;
+  width: 600rpx;
+
+}
+
+.pic-container {
+  height: 400rpx;
+  width: 600rpx;
+}
+
+.picture {
+  height: 400rpx;
+  width: 600rpx;
+  border-radius: 10rpx;
+}
+
+.main-text {
+  font-size: 36rpx;
+  width:100%;
+}
+.wx-switch-input{
+  width: 80rpx !important;
+  height: 45rpx !important;
+  background: rgb(240, 173, 230)!important;
+border: rgb(240, 173, 230) !important;
+box-sizing: border-box;
+}
+.wx-switch-input::before{
+  width: 80rpx !important;
+  height: 45rpx !important;
+}
+.wx-switch-input::after{
+  width: 50rpx !important;
+  height: 45rpx !important;
+}
+
+
+ /* 图片 */
+ .images_box{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: white;
+ }
+ .img-box{
+  border: 2rpx solid rgb(199, 197, 197);
+  border-radius: 10rpx;
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 35rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center; 
+ }
+ .img{
+  width: 95%;
+height: 95%;
+ }
+ /* 删除图片 */
+ .img-delect{
+  width:50rpx;
+  height:50rpx;
+  border-radius:50%;
+  position:absolute;
+  right:-20rpx;
+  top:-20rpx;
+ }
+
+ .jiage{
+  height: 60rpx;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+ }
+ .rmb{
+  width: 280rpx;
+  border: 2rpx solid rgb(199, 197, 197);
+ }
+ button{
+  margin-top: 20rpx;
+  background-color: rgb(236, 134, 221);
+  color: white;
+  
+ }
+ .radio-group{
+  display: flex;
+ }
+ .select{
+   color: rgb(221, 103, 203);
+ }

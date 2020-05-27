@@ -1,0 +1,22 @@
+<!--miniprogram/pages/home/home.wxml-->
+<image class="back-img" src="../../images/background.png"></image>
+
+<view class="shiguang"><text  class="title">时光</text></view>
+<view bindtap="todiary" class="txt">
+	<text  >我的日记本</text>
+
+</view>
+<view bindtap="totimer" class="txt">
+
+	<text>时光机</text>
+
+</view>
+<view bindtap="tofriendslist" class="txt">
+	<text>好友日记</text>
+</view>
+<view bindtap="touserInfo" class="txt">
+	<text>个人中心</text>
+</view>
+<view bindtap="tous" class="txt">
+	<text>联系我们</text>
+</view>

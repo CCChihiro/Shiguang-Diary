@@ -1,0 +1,124 @@
+/* miniprogram/pages/myfriends/friendslist.wxss */
+page{
+  font-family:cursive;
+}
+.friends{
+padding-left: 55rpx;
+  height: 120rpx;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.head{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:100%;
+  margin-right: 50rpx;
+
+
+}
+.friends-info{
+  font-size:32rpx ;
+  width: 100%;
+}
+.name{
+  width: 250rpx;
+  height: 50rpx;
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+
+.update-button{
+  font-size: 32rpx;
+  font-weight: normal;
+}
+.update-container{
+  width: 40rpx;
+  margin-left: 50rpx;
+  margin-right: 40rpx;
+}
+
+
+
+ .model{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+  opacity: 0.5;
+  top: 0;
+  left:0;
+ }
+ .modalDlg{
+  width: 70%;
+  position: fixed;
+  top:350rpx;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+ .windowRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 110rpx;
+  width: 100%;
+ }
+ .back{
+  text-align: center;
+  color:#D126B6; 
+  font-size: 30rpx;
+  margin: 30rpx;
+ }
+ .userTitle{
+  font-size: 30rpx;
+  color: #666;
+  margin: 30rpx;
+ }
+ .wishName{
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  margin-bottom: 30rpx;
+ }
+ .wish_put{
+  width: 80%;
+  border: 1px solid;
+  border-radius: 10rpx;
+  padding-left: 10rpx;
+ }
+ .wishbnt{
+  width: 100%;
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+
+ }
+ .wishbnt_bt{
+  font-size: 30rpx;
+  border: 0;
+  width: 200rpx;
+  background-color: rgb(221, 103, 203);
+  color: #fbf1e8;
+ }
