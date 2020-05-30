@@ -1,19 +1,19 @@
 <view class='container'>
 	<view class='card_wrap'>
 		<view class='card_item'  >
-				<view wx:if="{{image!=''}}" class="main-container">
+				<view wx:if="{{imgbox!=''}}" class="main-container">
 					<scroll-view scroll-y="true">
-						<view wx:for='{{image}}' class="main-container" wx:for-item="image">
+						<view wx:for='{{imgbox}}' class="main-container" wx:for-item="imgbox">
 							<view class="pic-container">
-								<image class="picture" src="{{image}}"></image>
+								<image class="picture" src="{{imgbox}}"></image>
 							</view>
 						</view>
 					</scroll-view>
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
 					<text>{{diary_date}}</text><text>\t星期？\t</text>		
-		<text data-index="{{index}}"  bindtap='toeditDiary'>\t编辑\t</text>
-     <text data-index="{{index}}"  bindtap='deleteDiary'>\t删除</text>
+		<text  bindtap='toeditDiary'>\t编辑\t</text>
+     <text  bindtap='deleteDiary'>\t删除</text>
 				</view>
 				<view class="text-container"><text>{{weather}}</text><text>\t{{mood}}</text></view>
 				<view class="text-container"><text>{{title}}</text></view>

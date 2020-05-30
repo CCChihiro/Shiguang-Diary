@@ -12,7 +12,7 @@ Page({
     timerBool: false,
     details:'',
    content:'这是原来的正文1',diary_date:'原日期',weather:'原天气',mood:'原心情',authority:'true',
-    times:'true',year:'2015.5.10',imgbox:['../../images/cover.jpg'],background:'', title:'原题目',
+    times:'true',year:'2015.5.10',imgbox:['../../images/cover.jpg'],background:'', title:'原题目',diary_id:''
 
   },
   onLoad: function (options) {
@@ -27,6 +27,7 @@ Page({
           imgbox:app.globalData.imgbox,
           background:app.globalData.background, 
           title:app.globalData.title,
+         diary_id:app.globalData.diary_id,
       })
       },
   datePickerBindchange:function(e){

@@ -16,7 +16,7 @@ Page({
   isChecked1: false,
     timerBool: false,
    content:'这是正文1',diary_date:1002,weather:'',mood:'',authority:'',
-    times:'',year:'',imgbox:[],title:'',
+    times:'',year:'',imgbox:[],title:'',diary_id:''
   },
   datePickerBindchange:function(e){
     this.setData({
