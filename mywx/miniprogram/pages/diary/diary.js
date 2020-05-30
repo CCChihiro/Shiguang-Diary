@@ -8,6 +8,8 @@ Page({
         slider: false,
         animationData: {},
         showDelete: false,
+        user_id: 'zyx',
+        diary_id: '1590399306189-649',
         cardInfoList: [
             { title: '-1', id: '-1', cover: '../../images/cover.jpg' },/*封面占位：不能删*/
             {
@@ -125,19 +127,61 @@ Page({
             url: '../writeDiary/writeDiary',
         })
     },
-    toeditDiary() {
-        wx.navigateTo({
-            url: '../editDiary/editDiary',
-        })
-    },
+    toeditDiary(e) {
+                var index = e.currentTarget.dataset.index
+                var id = e.currentTarget.dataset.id
+                console.log(index)
+                console.log(id)
+                app.globalData.content= this.data.cardInfoList[index].content  // 获取goodsList[index].num
+                app.globalData.diary_date= this.data.cardInfoList[index].diary_date  // 获取goodsList[index].num
+                app.globalData.mood= this.data.cardInfoList[index].mood  // 获取goodsList[index].num
+                app.globalData.authority= this.data.cardInfoList[index].authority  // 获取goodsList[index].num
+                app.globalData.times=this.data.cardInfoList[index].times  // 获取goodsList[index].num
+                app.globalData.year = this.data.cardInfoList[index].year  // 获取goodsList[index].num
+                app.globalData.imgbox= this.data.cardInfoList[index].imgbox  // 获取goodsList[index].num
+                app.globalData.background= this.data.cardInfoList[index].background  // 获取goodsList[index].num
+                app.globalData.title= this.data.cardInfoList[index].title  // 获取goodsList[index].num
+                app.globalData.weather = this.data.cardInfoList[index].weather  // 获取goodsList[index].num
+                wx.navigateTo({
+                    url: '../editDiary/editDiary',
+                })
+            },
 
 /***删除日记 */
     deleteDiary: function (e) {
+        let that = this
         let index = e.currentTarget.dataset.index
-        this.setData({
+        that.setData({
             showDelete: true,
             temp_id: index
         })
+        
+    wx.cloud.callFunction({
+      name: "deleteDiary",
+      data: {
+        user_id: that.data.user_id,
+        diary_id: that.data.diary_id
+      },
+      success(res){
+        console.log("请求云函数成功", res)
+      },
+      fail(err){
+        console.log("请求云函数失败", err)
+      }
+    })
+    wx.cloud.callFunction({
+      name: "deleteProperty",
+      data: {
+        user_id: that.data.user_id,
+        diary_id: that.data.diary_id
+      },
+      success(res){
+        console.log("请求云函数成功", res)
+      },
+      fail(err){
+        console.log("请求云函数失败", err)
+      }
+    })
     },
     /**点击返回按钮隐藏 */
     del_back: function () {

@@ -6,7 +6,7 @@
 		<view class="images_box">
 			<block wx:key="imgbox" wx:for="{{imgbox}}">
 				<view class='img-box'>
-					<image class='img' src='{{item}}'></image>
+					  <image class='img' src='{{imgbox}}'></image>
 					<view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
 						<image class='img' src='../../images/delimg.jpg'></image>
 					</view>

@@ -15,6 +15,20 @@ Page({
     times:'true',year:'2015.5.10',imgbox:['../../images/cover.jpg'],background:'', title:'原题目',
 
   },
+  onLoad: function (options) {
+        this.setData({
+          content:app.globalData.content,
+          diary_date:app.globalData.diary_date,
+          weather:app.globalData.weather,
+          mood:app.globalData.mood,
+          authority:app.globalData.authority,
+          times:app.globalData.times,
+          year:app.globalData.year,
+          imgbox:app.globalData.imgbox,
+          background:app.globalData.background, 
+          title:app.globalData.title,
+      })
+      },
   datePickerBindchange:function(e){
     this.setData({
       diary_date:e.detail.value

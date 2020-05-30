@@ -1,7 +1,9 @@
 //app.js
 App({
   globalData:{
-    friend_diary:''
+    friend_diary:'',
+    content:'',diary_date:'',weather:'',mood:'',authority:'',
+    times:'',year:'',imgbox:[''],background:'', title:'',diaryid:''
   },
   onLaunch: function () {
     

@@ -1,25 +1,25 @@
 <!--miniprogram/pages/diary/diary.wxml-->
 <view class='container'>
 	<view class='card_wrap'>
-		<view class='card_item'  bindtouchstart='touchstart' bindtouchend="touchend" animation="{{id === 0 ? animationData : ''}}" wx:for='{{cardInfoList}}' wx:key="unique" wx:for-index="id" wx:for-item="item">
+		<view class='card_item'  bindtouchstart='touchstart' bindtouchend="touchend" animation="{{id === 0 ? animationData : ''}}" wx:for='{{cardInfoList}}' wx:for-index="id"  wx:for-item="item">
 			<view wx:if="{{item.title!=''}}" >
 			<view wx:if="{{item.id=='-1'}}">
 			<view style="width:600rpx;height:850rpx"><image class="cover" src="{{item.cover}}"></image></view>
 			</view>
 			<view wx:else >
-				<view wx:if="{{item.image!=''}}" class="main-container">
+				<view wx:if="{{item.imgbox!=''}}" class="main-container">
 					<scroll-view scroll-y="true">
-						<view wx:for='{{item.image}}' class="main-container" wx:for-item="image">
+						<view wx:for='{{item.imgbox}}' class="main-container" wx:for-item="imgbox">
 							<view class="pic-container">
-								<image class="picture" src="{{image}}"></image>
+								<image class="picture" src="{{imgbox}}"></image>
 							</view>
 						</view>
 					</scroll-view>
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
 					<text>{{item.diary_date}}</text><text>\t星期？\t</text>		
-		<text data-index="{{index}}"  bindtap='toeditDiary'>\t编辑\t</text>
-     <text data-index="{{index}}"  bindtap='deleteDiary'>\t删除</text>
+		<text data-index="{{id}}"  bindtap='toeditDiary'>\t编辑\t</text>
+     <text data-index="{{id}}"  bindtap='deleteDiary'>\t删除</text>
 				</view>
 				<view class="text-container"><text>{{item.weather}}</text><text>\t{{item.mood}}</text></view>
 				<view class="text-container"><text>{{item.title}}</text></view>

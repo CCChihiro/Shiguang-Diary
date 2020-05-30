@@ -1,0 +1,5 @@
+<!--miniprogram/pages/modifyMydiary/modifyMydiary.wxml-->
+  <form bindsubmit="modifyMydiary">
+    content: <input bindinput="bindKeyInput"></input>
+    <button form-type="submit">修改日记</button>
+  </form>

@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data:{
+    user_id:'',
     picker1Value:0,
     dateValue:'今天是...',
     timerValue:'　请预约日期...',
@@ -15,7 +16,7 @@ Page({
   isChecked1: false,
     timerBool: false,
    content:'这是正文1',diary_date:1002,weather:'',mood:'',authority:'',
-    times:'',year:'',imgbox:[],background:'', title:'',details:'',
+    times:'',year:'',imgbox:[],title:'',
   },
   datePickerBindchange:function(e){
     this.setData({
@@ -120,13 +121,51 @@ Page({
       })
      }
    },
+   getUserid: function(){
+     let that = this
+    return db.collection("Users").where({
+      openid: getApp().globalData.openid,
+    }).get({
+      success(res){
+        console.log("请求成功", res)
+        that.setData({
+          user_id: res.data[0].id
+         })
+      },
+      fail(err){
+        console.log("请求失败", err)
+      },
+    })
+   },
    //提交表单
    formSubmit: function (e) {  
+     let that = this
     console.log('form发生了submit事件，携带数据为：', e.detail.value);  
     let { content,diary_date,weather,mood,authority,times,year,imgbox,background,title,details } = e.detail.value;  
-    this.setData({  
+    that.setData({  
       title,content,diary_date,weather,mood,authority,times,year,imgbox,background, details
-    })  
+    }) 
+    that.getUserid()
+    wx.cloud.callFunction({
+      name: "addDiary",
+      data: {
+        content: that.data.content,
+        user_id: that.data.user_id,
+        date: that.data.dateValue,
+        emotion: that.data.mood,
+        is_time: that.data.times,
+        permission: that.data.authority,
+        weather: that.data.weather,
+        year: that.data.timerValue,
+        title: that.data.title
+      },
+      success(res){
+        console.log("请求云函数成功", res)
+      },
+      fail(err){
+        console.log("请求云函数失败", err)
+      }
+    })
     },  
 
    //公开/隐私权限
@@ -142,6 +181,4 @@ Page({
   switch2Change: function (e){
       console.log('switch2 发生 change 事件，携带值为', e.detail.value)
     },
-
-
 })

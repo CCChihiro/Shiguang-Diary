@@ -1,0 +1,13 @@
+<!--miniprogram/pages/dairyList/dairyList.wxml-->
+    <!-- 查看日记属性 -->
+  <view class="uploader">
+      <button class="userinfo-nickname" bindtap="getProperties">日记属性</button>
+  </view>
+
+  <view wx:for="{{datalist}}" wx:key="item">
+  <view>{{item.id_user}}</view>
+    <view>{{item.weather}}</view>
+      <view>{{item.year}}</view>
+  </view>
+
+ 
