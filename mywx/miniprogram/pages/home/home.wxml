@@ -1,7 +1,7 @@
 <!--miniprogram/pages/home/home.wxml-->
 <image class="back-img" src="../../images/background.png"></image>
 
-<view class="shiguang"><text  class="title">时光</text></view>
+<view class="shiguang"><text  class="title">拾光</text></view>
 <view bindtap="todiary" class="txt">
 	<text  >我的日记本</text>
 

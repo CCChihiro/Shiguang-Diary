@@ -8,20 +8,12 @@ Page({
         slider: false,
         animationData: {},
         showDelete: false,
-        user_id: 'zyx',
-        diary_id: '1590399306189-649',
+        user_id: '',
+        diaryid: '1590399306189-649',
         cardInfoList: [
                         { title: '-1', id: '-1', cover: '../../images/cover.jpg',},/*封面占位：不能删*/
-                        {   title: '这是题目1', content: '这是正文1', weather: '雨', diary_date: '2020.5.26', mood: '哭', authority: 'false', times: 'false', year: '5年后',
-                            imgbox: ['../../images/pic1.jpg', '../../images/pic1.jpg'], background: '',diaryid:''
-                        },
-                        {
-                            title: '这是题目2', content: '这是正文1', diary_date: '2020.5.27', weather: '', mood: '', authority: '', times: '', year: '',
-                            imgbox: ['../../images/code-cloud-callback-config.png', '../../images/code-cloud-callback-config.png'], background: '',diaryid:''
-                        },
-                        { title: '这是题目3', content: '这是正文1', diary_date: '2020.5.28', weather: '', mood: '', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },
-                        { title: '这是题目4', content: '这是正文1', diary_date: '2020.5.29', weather: '', mood: '', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },
-                        { title: '这是题目5', content: '这是正文1',diary_date: '2020.5.30', weather: '', mood: '', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },]
+            
+                        ]
     },
     touchstart(e) {
         this.setData({
@@ -156,32 +148,46 @@ Page({
             temp_id: index
         })
         
-    wx.cloud.callFunction({
-      name: "deleteDiary",
-      data: {
-        user_id: that.data.user_id,
-        diary_id: that.data.diary_id
-      },
-      success(res){
-        console.log("请求云函数成功", res)
-      },
-      fail(err){
-        console.log("请求云函数失败", err)
-      }
-    })
-    wx.cloud.callFunction({
-      name: "deleteProperty",
-      data: {
-        user_id: that.data.user_id,
-        diary_id: that.data.diary_id
-      },
-      success(res){
-        console.log("请求云函数成功", res)
-      },
-      fail(err){
-        console.log("请求云函数失败", err)
-      }
-    })
+        db.collection("Users").where({
+          openid: getApp().globalData.openid,
+        }).get({
+          success(res) {
+            console.log("请求成功", res)
+            that.setData({
+              user_id: res.data[0].id
+            })
+            wx.cloud.callFunction({
+              name: "deleteDiary",
+              data: {
+                user_id: that.data.user_id,
+                diary_id: that.data.diaryid
+              },
+              success(res){
+                console.log("请求云函数成功", res)
+              },
+              fail(err){
+                console.log("请求云函数失败", err)
+              }
+            })
+            wx.cloud.callFunction({
+              name: "deleteProperty",
+              data: {
+                user_id: that.data.user_id,
+                diary_id: that.data.diaryid
+              },
+              success(res){
+                console.log("请求云函数成功", res)
+              },
+              fail(err){
+                console.log("请求云函数失败", err)
+              }
+            })
+    
+          },
+          fail(err) {
+            console.log("请求失败", err)
+          },
+        })
     },
     /**点击返回按钮隐藏 */
     del_back: function () {
