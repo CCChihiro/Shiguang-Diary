@@ -2,6 +2,7 @@ var app = getApp()
 
 Page({
   /* 页面的初始数据 */
+  /*
   data: {
     newFriend:[{nickname:'这是备注',name:'apple',portrait:'来看看吧~',friend_id:'123',cover:'../../images/code-cloud-callback-config.png',new_message:'true',status:'申请加你为好友'},
     {nickname:'这是备注',name:'apple',portrait:'来看看吧~',friend_id:'' ,cover:'',new_message:'true',status:'申请加你为好友'}
@@ -10,12 +11,33 @@ Page({
   refFriend:[{nickname:'这是备注',name:'apple',portrait:'来看看吧~',friend_id:'123',cover:'../../images/code-cloud-callback-config.png'},
   {nickname:'这是备注',name:'apple',portrait:'来看看吧~',friend_id:'' ,cover:''}
 ],
+*/
+  data: {
+    newFriend: [],
+    refFriend: [],
   temp_id:'',
   temp_nickname:'',
   showModal: false,
 showFind:false,
 showDelete:false,
 },
+
+  getProperties: function () {
+    let that = this
+    wx.cloud.callFunction({
+      name: "getApplyList",
+      
+      success(res) {
+        console.log("请求云函数成功", res)
+        that.setData({
+          datalist: res.result.data
+        })
+      },
+      fail(err) {
+        console.log("请求云函数失败", err)
+      }
+    })
+  },
 
 /****修改备注 */
   /** 控制显示 */
