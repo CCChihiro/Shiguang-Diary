@@ -8,6 +8,7 @@ Page({
   data: {
     length: 0,
     times: [],
+    times2: [],
     user_id: '',
     diaryid: '1590399306189-649',
   },
@@ -35,7 +36,6 @@ Page({
               times: cardList.concat(res.result.data)
             })
             var i = 0
-            var my_list = []
             let a = async function (i, original_data, that) {
 
               return await wx.cloud.callFunction({
@@ -46,6 +46,7 @@ Page({
                 },
                 success(res) {
                   console.log("请求云函数成功", res)
+                  let my_list=that.data.times2
                   var dict = {}
                   dict['diary_id'] = original_data.diary_id
                   dict['content'] = original_data.content
@@ -58,6 +59,9 @@ Page({
                   dict['title'] = res.result.data[0].title
                   dict['weather'] = res.result.data[0].weather
                   my_list.push(dict)
+                  that.setData({
+                    times2: my_list
+                  })
                 },
                 fail(err) {
                   console.log("请求云函数失败", err)
@@ -68,11 +72,6 @@ Page({
             for (i = 0; i < that.data.length; i++) {
               a(i, that.data.times[i], that)
             }
-            that.setData({
-              times: my_list
-            })
-            console.log(that.data.times)
-            
           },
           fail(err) {
             console.log("请求云函数失败", err)
@@ -86,18 +85,18 @@ Page({
       }
     })
   },
-  totimer_detail(e){
+  totimer_detail(e) {
     var index = e.currentTarget.dataset.index
     console.log(index)
-    app.globalData.content= this.data.times[index].content  // 获取goodsList[index].num
-    app.globalData.diary_date= this.data.times[index].diary_date  // 获取goodsList[index].num
-    app.globalData.mood= this.data.times[index].mood  // 获取goodsList[index].num
-    app.globalData.authority= this.data.times[index].authority  // 获取goodsList[index].num
-    app.globalData.times=this.data.times[index].times  // 获取goodsList[index].num
+    app.globalData.content = this.data.times[index].content  // 获取goodsList[index].num
+    app.globalData.diary_date = this.data.times[index].diary_date  // 获取goodsList[index].num
+    app.globalData.mood = this.data.times[index].mood  // 获取goodsList[index].num
+    app.globalData.authority = this.data.times[index].authority  // 获取goodsList[index].num
+    app.globalData.times = this.data.times[index].times  // 获取goodsList[index].num
     app.globalData.year = this.data.times[index].year  // 获取goodsList[index].num
-    app.globalData.imgbox= this.data.times[index].imgbox  // 获取goodsList[index].num
-    app.globalData.background= this.data.times[index].background
-    app.globalData.title= this.data.times[index].title  // 获取goodsList[index].num
+    app.globalData.imgbox = this.data.times[index].imgbox  // 获取goodsList[index].num
+    app.globalData.background = this.data.times[index].background
+    app.globalData.title = this.data.times[index].title  // 获取goodsList[index].num
     app.globalData.weather = this.data.times[index].weather  // 获取goodsList[index].num
     app.globalData.diaryid = this.data.times[index].diaryid  // 获取goodsList[index].num
 
