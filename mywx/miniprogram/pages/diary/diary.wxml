@@ -11,7 +11,7 @@
 					<scroll-view scroll-y="true">
 						<view wx:for='{{item.imgbox}}' class="main-container" wx:for-item="imgbox">
 							<view class="pic-container">
-								<image class="picture" src="{{imgbox}}"></image>
+								<image src="{{img_url}}"></image>
 							</view>
 						</view>
 					</scroll-view>

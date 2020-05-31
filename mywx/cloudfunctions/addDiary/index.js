@@ -29,6 +29,7 @@ exports.main = async (event, context) => {
         weather: event.weather,
         year: "",
         title: event.title,
+        img_url: event.img_url
       }
     })
     if(event.is_time){

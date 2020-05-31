@@ -3,7 +3,7 @@ App({
   globalData:{
     friend_diary:'',
     content:'',diary_date:'',weather:'',mood:'',authority:'',
-    times:'',year:'',imgbox:[''],background:'', title:'',diaryid:''
+    times:'',year:'',imgbox:[''],background:'', title:'',diaryid:'',img_url:''
   },
   onLaunch: function () {
     
