@@ -7,21 +7,26 @@
 			<view style="width:600rpx;height:850rpx"><image class="cover" src="{{item.cover}}"></image></view>
 			</view>
 			<view wx:else >
+				<view wx:if="{{item.img_url!=''}}" class="main-container">
 
+						<view  class="main-container">
 							<view class="pic-container">
-								<image src="{{item.img_url}}"></image>
+								<image class="picture" src="{{item.img_url}}"></image>
+							</view>
+						</view>
+
 
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
-					<text>{{item.diary_date}}</text><text></text>		
-		<text data-index="{{id}}"  bindtap='toeditDiary'>\t编辑\t</text>
+					<text>{{item.diary_date}}</text><text>\t\t</text>		
+		<text data-index="{{id}}"  bindtap='toeditDiary' style="margin-left:40rpx;margin-right:40rpx">\t编辑\t</text>
      <text data-index="{{id}}"  bindtap='deleteDiary'>\t删除</text>
 				</view>
-				<view class="text-container"><text>{{item.weather}}</text><text>\t{{item.mood}}</text></view>
+				<view class="text-container"><text>{{item.weather}}</text><text style="margin-left:30rpx;">\t{{item.mood}}</text></view>
 				<view class="text-container"><text>{{item.title}}</text></view>
 				<scroll-view scroll-y="true">
 					<view class="main-body">
-						{{item.content}}
+						\t{{item.content}}
 					</view>
 				</scroll-view>
 				<view>
