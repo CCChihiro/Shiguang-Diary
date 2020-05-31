@@ -2,7 +2,7 @@
 
 	<view class="friends">
 		<view>
-			<image class="head" src="../../images/code-cloud-callback-config.png">
+			<image class="head" src="{{avatar}}">
 			</image>
 		</view>
 		<view style="flex-direction:column,width:50%">

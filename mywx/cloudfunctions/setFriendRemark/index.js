@@ -13,6 +13,7 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('Friends')
       .where({
+        user_id: event.user_id,
         friend_id: event.friend_id
       })
       .update({

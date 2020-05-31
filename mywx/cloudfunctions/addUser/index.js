@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   return await db.collection('Users').add({
     data: {
       user_id: event.user_id,
-      open_id: wxContext.OPENID,
+      open_id: event.open_id,
       nickname: user.nickname,
       portrait: user.portrait,
       cover: user.cover

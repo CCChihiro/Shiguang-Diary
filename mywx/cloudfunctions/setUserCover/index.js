@@ -13,11 +13,11 @@ exports.main = async (event, context) => {
   try {
     return await db.collection('Users')
       .where({
-        open_id: wxContext.OPENID
+        open_id: event.openid
       })
       .update({
         data: {
-          portrait: event.portrait
+          cover: event.cover
         }
       })
   } catch (e) {
