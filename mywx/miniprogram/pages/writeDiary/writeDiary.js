@@ -6,26 +6,26 @@ Page({
   /**
    * 页面的初始数据
    */
-  data:{
-    user_id:'',
-    picker1Value:0,
-    dateValue:'今天是...',
-    timerValue:'　请预约日期...',
+  data: {
+    user_id: '',
+    picker1Value: 0,
+    dateValue: '今天是...',
+    timerValue: '　请预约日期...',
 
-  fileIDs: [],//上传云存储后的返回值
-  isChecked1: false,
+    fileIDs: [],//上传云存储后的返回值
+    isChecked1: false,
     timerBool: false,
-   content:'这是正文1',diary_date:1002,weather:'',mood:'',authority:'',
-    times:'',year:'',imgbox:[],title:'',diary_id:''
+    content: '这是正文1', diary_date: 1002, weather: '', mood: '', authority: '',
+    times: '', year: '', imgbox: [], title: '', diary_id: ''
   },
-  datePickerBindchange:function(e){
+  datePickerBindchange: function (e) {
     this.setData({
-      dateValue:e.detail.value
+      dateValue: e.detail.value
     })
   },
-  timerPickerBindchange:function(e){
+  timerPickerBindchange: function (e) {
     this.setData({
-      timerValue:e.detail.value
+      timerValue: e.detail.value
     })
   },
   imgDelete1: function (e) {
@@ -34,151 +34,171 @@ Page({
     let imgbox = this.data.imgbox;
     imgbox.splice(index, 1)
     that.setData({
-     imgbox: imgbox
+      imgbox: imgbox
     });
-   },
-   // 选择图片 &&&
-   addPic1: function (e) {
+  },
+  // 选择图片 &&&
+  addPic1: function (e) {
     var imgbox = this.data.imgbox;
     console.log(imgbox)
     var that = this;
     var n = 5;
     if (5 > imgbox.length > 0) {
-     n = 5 - imgbox.length;
+      n = 5 - imgbox.length;
     } else if (imgbox.length == 5) {
-     n = 1;
+      n = 1;
     }
     wx.chooseImage({
-     count: n, // 默认9，设置图片张数
-     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-     success: function (res) {
-      // console.log(res.tempFilePaths)
-      // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-      var tempFilePaths = res.tempFilePaths
-      if (imgbox.length == 0) {
-       imgbox = tempFilePaths
-      } else if (5 > imgbox.length) {
-       imgbox = imgbox.concat(tempFilePaths);
+      count: n, // 默认9，设置图片张数
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // console.log(res.tempFilePaths)
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+        if (imgbox.length == 0) {
+          imgbox = tempFilePaths
+        } else if (5 > imgbox.length) {
+          imgbox = imgbox.concat(tempFilePaths);
+        }
+        that.setData({
+          imgbox: imgbox
+        });
       }
-      that.setData({
-       imgbox: imgbox
-      });
-     }
     })
-   },
-   
-   //图片
-   imgbox: function (e) {
+  },
+
+  //图片
+  imgbox: function (e) {
     this.setData({
       imgbox: e.detail.value
     })
-   },
+  },
 
-   //发布按钮
-   fb: function (e) {
+  //发布按钮
+  fb: function (e) {
     if (!this.data.imgbox.length) {
 
     } else {
       //上传图片到云存储
       wx.showLoading({
-       title: '上传中',
+        title: '上传中',
       })
       let promiseArr = [];
       for (let i = 0; i < this.data.imgbox.length; i++) {
-       promiseArr.push(new Promise((reslove, reject) => {
-        let item = this.data.imgbox[i];
-        let suffix = /\.\w+$/.exec(item)[0];//正则表达式返回文件的扩展名
-        wx.cloud.uploadFile({
-         cloudPath: new Date().getTime() + suffix, // 上传至云端的路径
-         filePath: item, // 小程序临时文件路径
-         success: res => {
-          this.setData({
-           fileIDs: this.data.fileIDs.concat(res.fileID)
-          });
-          console.log(res.fileID)//输出上传后图片的返回地址
-          reslove();
-          wx.hideLoading();
-          wx.showToast({
-           title: "上传成功",
+        promiseArr.push(new Promise((reslove, reject) => {
+          let item = this.data.imgbox[i];
+          let suffix = /\.\w+$/.exec(item)[0];//正则表达式返回文件的扩展名
+          wx.cloud.uploadFile({
+            cloudPath: new Date().getTime() + suffix, // 上传至云端的路径
+            filePath: item, // 小程序临时文件路径
+            success: res => {
+              this.setData({
+                fileIDs: this.data.fileIDs.concat(res.fileID)
+              });
+              console.log(res.fileID)//输出上传后图片的返回地址
+              reslove();
+              wx.hideLoading();
+              wx.showToast({
+                title: "上传成功",
+              })
+            },
+            fail: res => {
+              wx.hideLoading();
+              wx.showToast({
+                title: "上传失败",
+              })
+            }
+
           })
-         },
-         fail: res=>{
-          wx.hideLoading();
-          wx.showToast({
-           title: "上传失败",
-          })
-         }
-   
-        })
-       }));
+        }));
       }
       Promise.all(promiseArr).then(res => {//等数组都做完后做then方法
-       console.log("图片上传完成后再执行")
-       this.setData({
-        imgbox:[]
-       })
+        console.log("图片上传完成后再执行")
+        this.setData({
+          imgbox: []
+        })
       })
-     }
-   },
-   getUserid: function(){
-     let that = this
-    return db.collection("Users").where({
+    }
+  },
+
+  //提交表单
+  formSubmit: function (e) {
+    let that = this
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    let { content, diary_date, weather, mood, authority, times, year, imgbox, background, title, details } = e.detail.value;
+    that.setData({
+      title, content, diary_date, weather, mood, authority, times, year, imgbox, background, details
+    })
+    var id = new Date().getTime() + "-" + Math.floor(Math.random() * 1000)
+    var my_id = id
+    app.globalData.content = that.data.content  // 获取goodsList[index].num
+    app.globalData.diary_date = that.data.diary_date  // 获取goodsList[index].num
+    app.globalData.mood = that.data.mood  // 获取goodsList[index].num
+    app.globalData.authority = that.data.authority  // 获取goodsList[index].num
+    app.globalData.times = that.data.times  // 获取goodsList[index].num
+    app.globalData.year = that.data.year  // 获取goodsList[index].num
+    app.globalData.imgbox = that.data.imgbox  // 获取goodsList[index].num
+    app.globalData.background = that.data.background  // 获取goodsList[index].num
+    app.globalData.title = that.data.title  // 获取goodsList[index].num
+    app.globalData.weather = that.data.weather  // 获取goodsList[index].num
+    app.globalData.diaryid = my_id
+    db.collection("Users").where({
       openid: getApp().globalData.openid,
     }).get({
-      success(res){
+      success(res) {
         console.log("请求成功", res)
         that.setData({
           user_id: res.data[0].id
-         })
+        })
+        wx.cloud.callFunction({
+          name: "addDiary",
+          data: {
+            diary_id: my_id,
+            content: that.data.content,
+            user_id: that.data.user_id,
+            date: that.data.dateValue,
+            emotion: that.data.mood,
+            is_time: that.data.times,
+            permission: that.data.authority,
+            weather: that.data.weather,
+            year: that.data.timerValue,
+            title: that.data.title
+          },
+          success(res) {
+            console.log("请求云函数成功", res)
+          },
+          fail(err) {
+            console.log("请求云函数失败", err)
+          }
+        })
+
       },
-      fail(err){
+      fail(err) {
         console.log("请求失败", err)
       },
     })
-   },
-   //提交表单
-   formSubmit: function (e) {  
-     let that = this
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);  
-    let { content,diary_date,weather,mood,authority,times,year,imgbox,background,title,details } = e.detail.value;  
-    that.setData({  
-      title,content,diary_date,weather,mood,authority,times,year,imgbox,background, details
-    }) 
-    that.getUserid()
-    wx.cloud.callFunction({
-      name: "addDiary",
-      data: {
-        content: that.data.content,
-        user_id: that.data.user_id,
-        date: that.data.dateValue,
-        emotion: that.data.mood,
-        is_time: that.data.times,
-        permission: that.data.authority,
-        weather: that.data.weather,
-        year: that.data.timerValue,
-        title: that.data.title
-      },
-      success(res){
-        console.log("请求云函数成功", res)
-      },
-      fail(err){
-        console.log("请求云函数失败", err)
-      }
-    })
-    },  
 
-   //公开/隐私权限
-   switch1Change: function (e){
+
+
+
+
+    wx.navigateTo({
+      url: '../timer-detail/timer-detail',
+    })
+  },
+
+  //公开/隐私权限
+  switch1Change: function (e) {
     console.log(e.detail.value)
-            var changedData = {};
-            changedData['isChecked1'] = !this.data['isChecked1'];
-            this.setData(changedData);
-        
+    var changedData = {};
+    changedData['isChecked1'] = !this.data['isChecked1'];
+    this.setData(changedData);
+
 
   },
   //时光机
-  switch2Change: function (e){
-      console.log('switch2 发生 change 事件，携带值为', e.detail.value)
-    },
+  switch2Change: function (e) {
+    console.log('switch2 发生 change 事件，携带值为', e.detail.value)
+  },
 })

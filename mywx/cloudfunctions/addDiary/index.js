@@ -6,8 +6,7 @@ cloud.init({
 })
 
 const db = cloud.database()
-var id = new Date().getTime() +"-"+ Math.floor(Math.random() * 1000)
-var my_id = id
+
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -15,13 +14,13 @@ exports.main = async (event, context) => {
     await db.collection("Dairies").add({
       data: {
         content: event.content,
-        diary_id: my_id,
+        diary_id: event.diary_id,
         id_user: event.user_id
       }
     })
     await db.collection("Properties").add({
       data: {
-        id_diary: my_id,
+        id_diary: event.diary_id,
         id_user: event.user_id,
         date_write: event.date,
         emotion: event.emotion,
@@ -34,7 +33,7 @@ exports.main = async (event, context) => {
     })
     if(event.is_time){
       await db.collection("Properties").where({
-        id_diary: my_id,
+        id_diary: event.diary_id,
         id_user: event.user_id,
       }).update({
         data: {
