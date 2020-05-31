@@ -1,4 +1,0 @@
-<!--miniprogram/pages/deleteMydiary/deleteMydiary.wxml-->
-  <view class="uploader">
-      <button class="userinfo-nickname" bindtap="deleteMydiary">删除日记</button>
-  </view>
