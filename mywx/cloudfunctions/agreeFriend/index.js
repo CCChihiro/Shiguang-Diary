@@ -22,7 +22,8 @@ exports.main = async (event, context) => {
     return await db.collection("Friends").add({
       data: {
         my_id: my_id,
-        friend_id: friend_id
+        friend_id: friend_id,
+        remark: friend_nickname
       }
     })
   } catch (e) {

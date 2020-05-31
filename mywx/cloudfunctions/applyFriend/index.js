@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
       .add({
         data: {
           from_id: event.from_id,
-          to_id: to_id,
+          to_id: event.to_id,
           time: Date.now
         }
       })

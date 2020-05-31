@@ -11,7 +11,7 @@
 		<view class="update-container">
 			<button wx:if='{{newFriend.new_message}}' data-index="{{index}}" class="update-button"  style="width:180rpx" bindtap='eject'>同意</button></view>
 		<view  class="update-container">
-     <button wx:if='{{newFriend.new_message}}' data-index="{{index}}" class="update-button" style="width:180rpx" bindtap='deleteFriend'>拒绝</button></view>
+     <button wx:if='{{newFriend.new_message}}' data-index="{{index}}" class="update-button" style="width:180rpx" bindtap='refuseFriend'>拒绝</button></view>
 	</view>
 </view>
 
@@ -47,15 +47,15 @@
 
 
 
-<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showDelete}}'>
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showRefuse}}'>
 	<view class='windowRow'>
 		<text class='userTitle'>确定拒绝好友？
  </text>
-		<view class='back' bindtap='del_back'>
+		<view class='back' bindtap='ref_back'>
 			返回
 		</view>
 	</view>
 	<view class='wishbnt'>
-		<button class='wishbnt_bt' bindtap='del_ok'>确定</button>
+		<button class='wishbnt_bt' bindtap='ref_ok'>确定</button>
 	</view>
 </view>

@@ -11,7 +11,8 @@ Page({
     showModal: false,
     showFind: false,
     showDelete: false,
-    new_friendid: ''
+    new_friendid: '',
+    user_id: ''
   },
 
   /*** 获取好友列表 */
@@ -74,9 +75,6 @@ Page({
       },
       success(res) {
         console.log("请求云函数成功", res)
-        that.setData({
-          array: res.result.data
-        })
       },
       fail(err) {
         console.log("请求云函数失败", err)
@@ -138,9 +136,6 @@ Page({
           },
           success(res) {
             console.log("请求云函数成功", res)
-            that.setData({
-              array: res.result.data
-            })
           },
           fail(err) {
             console.log("请求云函数失败", err)
