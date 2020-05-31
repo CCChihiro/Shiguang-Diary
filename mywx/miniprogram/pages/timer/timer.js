@@ -48,28 +48,23 @@ Page({
                 },
                 success(res) {
                   console.log("请求云函数成功", res)
-                  let my_list=that.data.times2
-                  if(res.result.data[0].is_time && (new Date(str_today) >= new Date(res.result.data[0].year))){
-                  var dict = {}
-                  dict['diary_id'] = original_data.diary_id
-                  dict['content'] = original_data.content
-                  dict['id_user'] = original_data.id_user
-                  dict['diary_date'] = res.result.data[0].date_write
-                  dict['mood'] = res.result.data[0].emotion
-                  dict['authority'] = res.result.data[0].permission
-                  dict['times'] = res.result.data[0].is_time
-                  dict['year'] = res.result.data[0].year
-                  dict['title'] = res.result.data[0].title
-                  dict['weather'] = res.result.data[0].weather
-                  if(!res.result.data[0].img_url){
-                    dict['img_url'] = 'cloud://seey-zhou-wr3tn.7365-seey-zhou-wr3tn-1302195802/1590115601743.png'
-                  }
-                  else{
+                  let my_list = that.data.times2
+                  if (res.result.data[0].is_time && (new Date(str_today) >= new Date(res.result.data[0].year))) {
+                    var dict = {}
+                    dict['diary_id'] = original_data.diary_id
+                    dict['content'] = original_data.content
+                    dict['id_user'] = original_data.id_user
+                    dict['diary_date'] = res.result.data[0].date_write
+                    dict['mood'] = res.result.data[0].emotion
+                    dict['authority'] = res.result.data[0].permission
+                    dict['times'] = res.result.data[0].is_time
+                    dict['year'] = res.result.data[0].year
+                    dict['title'] = res.result.data[0].title
+                    dict['weather'] = res.result.data[0].weather
                     dict['img_url'] = res.result.data[0].img_url
+                    my_list.push(dict)
                   }
-                  my_list.push(dict)
-                  }
-                  
+
                   that.setData({
                     times2: my_list
                   })
@@ -99,17 +94,17 @@ Page({
   totimer_detail(e) {
     var index = e.currentTarget.dataset.index
     console.log(index)
-    app.globalData.content = this.data.times[index].content  // 获取goodsList[index].num
-    app.globalData.diary_date = this.data.times[index].diary_date  // 获取goodsList[index].num
-    app.globalData.mood = this.data.times[index].mood  // 获取goodsList[index].num
-    app.globalData.authority = this.data.times[index].authority  // 获取goodsList[index].num
-    app.globalData.times = this.data.times[index].times  // 获取goodsList[index].num
-    app.globalData.year = this.data.times[index].year  // 获取goodsList[index].num
-    app.globalData.imgbox = this.data.times[index].imgbox  // 获取goodsList[index].num
-    app.globalData.background = this.data.times[index].background
-    app.globalData.title = this.data.times[index].title  // 获取goodsList[index].num
-    app.globalData.weather = this.data.times[index].weather  // 获取goodsList[index].num
-    app.globalData.diaryid = this.data.times[index].diaryid  // 获取goodsList[index].num
+    app.globalData.content = this.data.times2[index].content  // 获取goodsList[index].num
+    app.globalData.diary_date = this.data.times2[index].diary_date  // 获取goodsList[index].num
+    app.globalData.mood = this.data.times2[index].mood  // 获取goodsList[index].num
+    app.globalData.authority = this.data.times2[index].authority  // 获取goodsList[index].num
+    app.globalData.times = this.data.times2[index].times  // 获取goodsList[index].num
+    app.globalData.year = this.data.times2[index].year  // 获取goodsList[index].num
+    app.globalData.imgbox = this.data.times2[index].imgbox  // 获取goodsList[index].num
+    app.globalData.background = this.data.times2[index].background
+    app.globalData.title = this.data.times2[index].title  // 获取goodsList[index].num
+    app.globalData.weather = this.data.times2[index].weather  // 获取goodsList[index].num
+    app.globalData.diaryid = this.data.times2[index].diaryid  // 获取goodsList[index].num
 
     wx.navigateTo({
       url: '../timer-detail/timer-detail',

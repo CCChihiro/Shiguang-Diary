@@ -13,7 +13,8 @@ Page({
     cover: '../../images/cover.jpg',
     openid: '',
     user_id: '',
-    login: false
+    login: false,
+    uploaded: false
   },
 
 
@@ -37,7 +38,7 @@ Page({
       openid: that.openid
     }).get({
       success(res) {
-        console.log("openid", that.openid)
+        console.log(res.data)
         if (res.data && res.data.length > 0) {
           console.log("Old User", res.data[0].user_id)
           wx.setStorageSync("user_id", res.data[0].user_id)
@@ -105,13 +106,21 @@ Page({
     var openid = this.data.openid,
       user_id = wx.getStorageSync("user_id"),
       avatar = wx.getStorageSync("avatar"),
-      name = wx.getStorageSync("name");
+      name = wx.getStorageSync("name"),
+      portrait = wx.getStorageSync("portrait"),
+      cover = wx.getStorageSync("cover");
     if (user_id) {
       this.setData({
         isHide: true,
         user_id: user_id,
         avatar: avatar,
-        name: name
+        name: name,
+        portrait: portrait,
+      })
+    }
+    if (cover) {
+      this.setData({
+        cover: cover
       })
     }
     /**
@@ -180,11 +189,12 @@ Page({
             this.setData({
               cover: photoUrl
             })
-            console.log("xianshitup")
+            wx.setStorageSync("cover", photoUrl)
+            console.log("Show pic")
             wx.cloud.callFunction({
               name: "setUserCover",
               data: {
-                openid: getApp().globalData.openid,
+                openid: that.openid,
                 cover: that.photoUrl
               }
             })
@@ -230,6 +240,7 @@ Page({
             portrait: portrait
           }
         })
+        wx.setStorageSync("portrait", portrait)
         console.log("ppok")
       }
       if (name.length != 0) {
@@ -244,6 +255,7 @@ Page({
             nickname: name
           }
         })
+        wx.setStorageSync("name", name)
       }
     }
 
