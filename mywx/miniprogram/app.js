@@ -1,12 +1,13 @@
 //app.js
 App({
-  globalData:{
-    friend_diary:'',
-    content:'',diary_date:'',weather:'',mood:'',authority:'',
-    times:'',year:'',imgbox:[''],background:'', title:'',diaryid:''
+  globalData: {
+    friend_diary: '',
+    content: '', diary_date: '', weather: '', mood: '', authority: '',
+    times: '', year: '', imgbox: [''], background: '', title: '', diaryid: '',
+    openid: ''
   },
   onLaunch: function () {
-    
+    var that = this
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -18,9 +19,21 @@ App({
         // env: 'my-env-id',
         traceUser: true,
       })
+      that.getOpenid();
     }
-
     this.globalData = {
     }
-  }
+  },
+
+
+getOpenid(){
+  let that = this
+  wx.cloud.callFunction({
+    name: "getOpenid",
+    complete: res => {
+      console.log('openid:', res.result.openid)
+      that.openid = res.result.openid
+    }
+  })
+}
 })

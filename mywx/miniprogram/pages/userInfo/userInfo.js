@@ -11,7 +11,7 @@ Page({
     avatar: '',
     portrait: '简介',
     cover: '../../images/cover.jpg',
-    open_id: getApp().globalData.open_id,
+    open_id: '',
     user_id: ''
   },
 
@@ -20,6 +20,7 @@ Page({
     /**
      * 获取用户信息
      */
+    /*
     wx.getUserInfo({
       success: function (res) {
         console.log(res);
@@ -27,9 +28,10 @@ Page({
           [name]: res.userInfo.nickName,
           [avatar]: res.userInfo.avatarUrl,
         })
-        console.log(name)
+        // console.log(this.name)
       }
     })
+    var db = wx.cloud.database()
     db.collection("Users").where({
       openid: that.open_id
     }).get({
@@ -52,11 +54,11 @@ Page({
             open_id: that.open_id,
             nickname: that.name,
             portrait: '',
-            cover: '',
           }
         })
       }
     })
+    */
   },
 
   uploadPhoto() {
@@ -123,6 +125,7 @@ Page({
           portrait,
           showModal: false
         })
+        console.log("pp")
         wx.cloud.callFunction({
           name: "setUserPortrait",
           data: {
@@ -130,6 +133,7 @@ Page({
             portrait: portrait
           }
         })
+        console.log("ppok")
       }
       if (name.length != 0) {
         this.setData({
@@ -149,5 +153,19 @@ Page({
 
 
   },
-
+  
+  onGetUserInfo: function(e) {
+    var that = this
+    console.log(e)
+    var d = e.detail.userInfo
+    that.setData({
+      avatar: d.avatarUrl,
+      name: d.nickName,
+      isHide: true
+    })
+    wx.setStorageSync("name", d.nickName)
+    wx.setStorageSync("avatar", d.avatarUrl)
+    var db = wx.cloud.database()
+    // todo: add user & set user
+  }
 })
