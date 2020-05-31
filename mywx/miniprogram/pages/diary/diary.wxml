@@ -7,14 +7,10 @@
 			<view style="width:600rpx;height:850rpx"><image class="cover" src="{{item.cover}}"></image></view>
 			</view>
 			<view wx:else >
-				<view wx:if="{{item.imgbox!=''}}" class="main-container">
-					<scroll-view scroll-y="true">
-						<view wx:for='{{item.imgbox}}' class="main-container" wx:for-item="imgbox">
+
 							<view class="pic-container">
-								<image src="{{img_url}}"></image>
-							</view>
-						</view>
-					</scroll-view>
+								<image src="{{item.img_url}}"></image>
+
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
 					<text>{{item.diary_date}}</text><text></text>		

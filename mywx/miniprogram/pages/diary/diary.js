@@ -4,6 +4,7 @@ const db = wx.cloud.database();//初始化数据库
 
 Page({
   data: {
+    img_url:'',
     length: 0,
     nowPgae: 1,
     startX: 0,
@@ -63,6 +64,7 @@ Page({
                   dict['year'] = res.result.data[0].year
                   dict['title'] = res.result.data[0].title
                   dict['weather'] = res.result.data[0].weather
+                  dict['img_url'] = res.result.data[0].img_url
                   my_list.push(dict)
                   }
                   
