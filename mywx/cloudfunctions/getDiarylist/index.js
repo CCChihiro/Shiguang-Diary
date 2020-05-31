@@ -10,7 +10,7 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   return await db.collection("Dairies").where({
-    user_id: event.user_id
+    id_user: event.user_id
   }).get({
     success(res){
       console.log("请求成功", res)

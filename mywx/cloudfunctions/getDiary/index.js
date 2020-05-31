@@ -10,8 +10,8 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  return await db.collection("Dairies").where({
-    diary_id: event.diary_id,
+  return await db.collection("Properties").where({
+    id_diary: event.diary_id,
     id_user: event.user_id,
   }).get({
     success(res){
