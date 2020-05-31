@@ -17,7 +17,7 @@
 					</scroll-view>
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
-					<text>{{item.diary_date}}</text><text>\t星期？\t</text>		
+					<text>{{item.diary_date}}</text><text></text>		
 		<text data-index="{{id}}"  bindtap='toeditDiary'>\t编辑\t</text>
      <text data-index="{{id}}"  bindtap='deleteDiary'>\t删除</text>
 				</view>

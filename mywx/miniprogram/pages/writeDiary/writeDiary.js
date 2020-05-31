@@ -85,6 +85,7 @@ Page({
         title: '上传中',
       })
       let promiseArr = [];
+      let img = []
       for (let i = 0; i < this.data.imgbox.length; i++) {
         promiseArr.push(new Promise((reslove, reject) => {
           let item = this.data.imgbox[i];
