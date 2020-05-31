@@ -13,6 +13,8 @@ Page({
     diaryid: '1590399306189-649',
   },
   onLoad: function (options) {
+    let today = new Date()
+    let str_today = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
     var cardList = []
     let that = this
     db.collection("Users").where({
@@ -47,6 +49,7 @@ Page({
                 success(res) {
                   console.log("请求云函数成功", res)
                   let my_list=that.data.times2
+                  if(res.result.data[0].is_time && (new Date(str_today) >= new Date(res.result.data[0].year))){
                   var dict = {}
                   dict['diary_id'] = original_data.diary_id
                   dict['content'] = original_data.content
@@ -58,7 +61,15 @@ Page({
                   dict['year'] = res.result.data[0].year
                   dict['title'] = res.result.data[0].title
                   dict['weather'] = res.result.data[0].weather
+                  if(!res.result.data[0].img_url){
+                    dict['img_url'] = 'cloud://seey-zhou-wr3tn.7365-seey-zhou-wr3tn-1302195802/1590115601743.png'
+                  }
+                  else{
+                    dict['img_url'] = res.result.data[0].img_url
+                  }
                   my_list.push(dict)
+                  }
+                  
                   that.setData({
                     times2: my_list
                   })

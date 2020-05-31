@@ -9,9 +9,9 @@ Page({
     slider: false,
     animationData: {},
     showDelete: false,
-
+img_url:'',
     title: '', content: '', weather: '', diary_date: '', mood: '', authority: '', times: '', year: '',
-    imgbox: [], background: '',diaryid:'', user_id:''
+     background: '',diaryid:'', user_id:''
 
 
   },
@@ -29,10 +29,10 @@ Page({
       authority:app.globalData.authority,
       times:app.globalData.times,
       year:app.globalData.year,
-      imgbox:app.globalData.imgbox,
+      img_url:app.globalData.img_url,
       background:app.globalData.background, 
       title:app.globalData.title,
-      diaryid:app.globalData.diaryid
+      diaryid:app.globalData.diaryid,
   })
   },
 
@@ -50,7 +50,7 @@ Page({
         app.globalData.authority= this.data.authority  // 获取goodsList[index].num
         app.globalData.times=this.data.times  // 获取goodsList[index].num
         app.globalData.year = this.data.year  // 获取goodsList[index].num
-        app.globalData.imgbox= this.data.imgbox  // 获取goodsList[index].num
+        app.globalData.img_url= this.data.img_url  // 获取goodsList[index].num
         app.globalData.background= this.data.background  // 获取goodsList[index].num
         app.globalData.title= this.data.title  // 获取goodsList[index].num
         app.globalData.weather = this.data.weather  // 获取goodsList[index].num

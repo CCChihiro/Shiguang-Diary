@@ -4,6 +4,7 @@ const db = wx.cloud.database();//初始化数据库
 
 Page({
   data: {
+    img_url:'',
     length: 0,
     nowPgae: 1,
     startX: 0,
@@ -51,7 +52,8 @@ Page({
                 },
                 success(res) {
                   console.log("请求云函数成功", res)
-                  var dict = {}
+                  if(!res.result.data[0].is_time){
+                    var dict = {}
                   dict['diary_id'] = original_data.diary_id
                   dict['content'] = original_data.content
                   dict['id_user'] = original_data.id_user
@@ -62,7 +64,15 @@ Page({
                   dict['year'] = res.result.data[0].year
                   dict['title'] = res.result.data[0].title
                   dict['weather'] = res.result.data[0].weather
+                  if(!res.result.data[0].img_url){
+                    dict['img_url'] = 'cloud://seey-zhou-wr3tn.7365-seey-zhou-wr3tn-1302195802/1590115601743.png'
+                  }
+                  else{
+                    dict['img_url'] = res.result.data[0].img_url
+                  }
                   my_list.push(dict)
+                  }
+                  
                 },
                 fail(err) {
                   console.log("请求云函数失败", err)

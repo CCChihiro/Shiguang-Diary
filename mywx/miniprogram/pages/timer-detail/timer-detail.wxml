@@ -1,17 +1,17 @@
 <view class='container'>
 	<view class='card_wrap'>
 		<view class='card_item'  >
-				<view wx:if="{{imgbox!=''}}" class="main-container">
-					<scroll-view scroll-y="true">
-						<view wx:for='{{imgbox}}' class="main-container" wx:for-item="imgbox">
+				<view wx:if="{{img_url!=''}}" class="main-container">
+
+						<view class="main-container" >
 							<view class="pic-container">
-								<image class="picture" src="{{imgbox}}"></image>
+								<image class="picture" src="{{img_url}}"></image>
 							</view>
 						</view>
-					</scroll-view>
+
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
-					<text>{{diary_date}}</text><text>\t星期？\t</text>		
+						  <text>{{diary_date}}</text><text>\t\t</text>    	
 		<text  bindtap='toeditDiary'>\t编辑\t</text>
      <text  bindtap='deleteDiary'>\t删除</text>
 				</view>
