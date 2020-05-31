@@ -1,24 +1,90 @@
 // miniprogram/pages/timer/timer.js
 
 const app = getApp()
+const db = wx.cloud.database();//初始化数据库
 Page({
 
   /**页面的初始数据 */
   data: {
-    times: [
-    {   title: '这是时光机1', content: '这是正文1', weather: '雨', diary_date: '2020.5.26', mood: '哭', authority: 'false', times: 'false', year: '5年后',
-       imgbox: ['../../images/pic1.jpg', '../../images/pic1.jpg'], background: '',diaryid:''
-    },
-    {
-      title: '这是时光机2', content: '这是正文1', diary_date: '2020.5.27', weather: '晴天', mood: '开心', authority: '', times: '', year: '',
-      imgbox: ['../../images/code-cloud-callback-config.png', '../../images/code-cloud-callback-config.png'], background: '',diaryid:''
-    },
-    { title: '这是时光机3', content: '这是正文1', diary_date: '2020.5.28', weather: '多云', mood: '开心', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },
-    { title: '这是时光机4', content: '这是正文1', diary_date: '2020.5.29', weather: '晴', mood: '开心', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },
-    { title: '这是时光机5', content: '这是正文1',diary_date: '2020.5.30', weather: '晴', mood: '不开心', authority: '', times: '', year: '', imgbox: '', background: '',diaryid:'' },]
-  
-    
+    length: 0,
+    times: [],
+    user_id: '',
+    diaryid: '1590399306189-649',
+  },
+  onLoad: function (options) {
+    var cardList = []
+    let that = this
+    db.collection("Users").where({
+      openid: getApp().globalData.openid,
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          user_id: res.data[0].id
+        })
+        console.log(that.data.user_id)
+        wx.cloud.callFunction({
+          name: "getDiarylist",
+          data: {
+            user_id: that.data.user_id,
+          },
+          success(res) {
+            console.log("请求云函数成功", res)
+            that.setData({
+              length: res.result.data.length,
+              times: cardList.concat(res.result.data)
+            })
+            var i = 0
+            var my_list = []
+            let a = async function (i, original_data, that) {
 
+              return await wx.cloud.callFunction({
+                name: "getDiary",
+                data: {
+                  user_id: that.data.user_id,
+                  diary_id: that.data.times[i].diary_id
+                },
+                success(res) {
+                  console.log("请求云函数成功", res)
+                  var dict = {}
+                  dict['diary_id'] = original_data.diary_id
+                  dict['content'] = original_data.content
+                  dict['id_user'] = original_data.id_user
+                  dict['diary_date'] = res.result.data[0].date_write
+                  dict['mood'] = res.result.data[0].emotion
+                  dict['authority'] = res.result.data[0].permission
+                  dict['times'] = res.result.data[0].is_time
+                  dict['year'] = res.result.data[0].year
+                  dict['title'] = res.result.data[0].title
+                  dict['weather'] = res.result.data[0].weather
+                  my_list.push(dict)
+                },
+                fail(err) {
+                  console.log("请求云函数失败", err)
+                }
+              })
+
+            }
+            for (i = 0; i < that.data.length; i++) {
+              a(i, that.data.times[i], that)
+            }
+            that.setData({
+              times: my_list
+            })
+            console.log(that.data.times)
+            
+          },
+          fail(err) {
+            console.log("请求云函数失败", err)
+          }
+        })
+
+
+      },
+      fail(err) {
+        console.log("请求云函数失败", err)
+      }
+    })
   },
   totimer_detail(e){
     var index = e.currentTarget.dataset.index
