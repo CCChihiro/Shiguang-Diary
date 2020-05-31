@@ -11,12 +11,109 @@ Page({
     avatar: '',
     portrait: '简介',
     cover: '../../images/cover.jpg',
-    open_id: '',
-    user_id: ''
+    openid: '',
+    user_id: '',
+    login: false
   },
 
+
+  onGetUserInfo: function (e) {
+    var that = this
+    console.log(e)
+    var d = e.detail.userInfo
+    that.setData({
+      avatar: d.avatarUrl,
+      name: d.nickName,
+      isHide: true,
+      login: true
+    })
+
+    wx.setStorageSync("name", d.nickName)
+    wx.setStorageSync("avatar", d.avatarUrl)
+    var db = wx.cloud.database()
+    // todo: add user & set user
+    that.openid = getApp().globalData.openid
+    db.collection("Users").where({
+      openid: that.openid
+    }).get({
+      success(res) {
+        console.log("openid", that.openid)
+        if (res.data && res.data.length > 0) {
+          console.log("Old User", res.data[0].user_id)
+          wx.setStorageSync("user_id", res.data[0].user_id)
+          wx.setStorageSync("openid", res.data[0].openid)
+        } else {
+          console.log("Nes User")
+          var avatar = d.avatarUrl,
+            name = d.nickName,
+            user_id;
+          if (!user_id) {
+            that.user_id = that.getUserId()
+          }
+          wx.cloud.callFunction({
+            name: 'addUser',
+            data: {
+              user_id: user_id,
+              openid: that.openid,
+              nickname: that.name,
+            },
+            success: function success(res) {
+              wx.showToast({
+                title: "注册成功"
+              })
+              console.log("Cloud add user", res, res.result.openid)
+              console.log("Add user success.")
+              db.collection("Users").where({
+                user_id: user_id
+              }).get({
+                success: function success(res) {
+                  wx.setStorageSync("openid", res.data[0].openid)
+                },
+                fail: function (err) {
+                  console.log("OpenId 缓存失败")
+                }
+              })
+            }
+          })
+        }
+      }
+    })
+    this.onLoad();
+  },
+
+  getUserId: function getUserId() {
+    var user_id = Date.now() + (Math.random() * 1e5).toFixed(0);
+    console.log("user id", user_id)
+    wx.setStorageSync("user_id", user_id)
+    return user_id
+  },
+  getOpenid: function getOpenid() {
+    var that = this
+    wx.cloud.callFunction({
+      name: "getOpenid",
+      complete: function complete(res) {
+        console.log("cloud get open id", res.result.openid)
+        that.setData({
+          openid: res.result.openid
+        })
+      }
+    })
+  },
   onLoad: function (options) {
     var that = this;
+    that.getOpenid()
+    var openid = this.data.openid,
+      user_id = wx.getStorageSync("user_id"),
+      avatar = wx.getStorageSync("avatar"),
+      name = wx.getStorageSync("name");
+    if (user_id) {
+      this.setData({
+        isHide: true,
+        user_id: user_id,
+        avatar: avatar,
+        name: name
+      })
+    }
     /**
      * 获取用户信息
      */
@@ -33,7 +130,7 @@ Page({
     })
     var db = wx.cloud.database()
     db.collection("Users").where({
-      openid: that.open_id
+      openid: that.openid
     }).get({
       success(res) {
         // 已用过本小程序
@@ -51,7 +148,7 @@ Page({
           name: "addUser",
           data: {
             user_id: new Date().getTime(),
-            open_id: that.open_id,
+            openid: that.openid,
             nickname: that.name,
             portrait: '',
           }
@@ -153,19 +250,5 @@ Page({
 
 
   },
-  
-  onGetUserInfo: function(e) {
-    var that = this
-    console.log(e)
-    var d = e.detail.userInfo
-    that.setData({
-      avatar: d.avatarUrl,
-      name: d.nickName,
-      isHide: true
-    })
-    wx.setStorageSync("name", d.nickName)
-    wx.setStorageSync("avatar", d.avatarUrl)
-    var db = wx.cloud.database()
-    // todo: add user & set user
-  }
+
 })

@@ -4,7 +4,8 @@ App({
     friend_diary: '',
     content: '', diary_date: '', weather: '', mood: '', authority: '',
     times: '', year: '', imgbox: [''], background: '', title: '', diaryid: '',
-    openid: ''
+    openid: '',
+    new_user: true,
   },
   onLaunch: function () {
     var that = this
@@ -26,14 +27,14 @@ App({
   },
 
 
-getOpenid(){
-  let that = this
-  wx.cloud.callFunction({
-    name: "getOpenid",
-    complete: res => {
-      console.log('openid:', res.result.openid)
-      that.openid = res.result.openid
-    }
-  })
-}
+  getOpenid() {
+    let that = this
+    wx.cloud.callFunction({
+      name: "getOpenid",
+      complete: res => {
+        console.log('openid:', res.result.openid)
+        that.openid = res.result.openid
+      }
+    })
+  }
 })
