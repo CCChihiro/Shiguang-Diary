@@ -33,14 +33,14 @@
 			<switch name="authority" checked="{{authority}}" bindchange="switch2Change" />
 		</view>
 		<view class="item" style="display:flex;flex-direction: row;">
-			<input type="text" name="weather" placeholder="{{weather}}" placeholder-style="font-family: cursive;" />
-			<input type="text" placeholder="{{mood}}" name="mood" placeholder-style="font-family: cursive;" />
+			<input type="text" name="weather" placeholder="{{weather}}" value="{{weather}}" placeholder-style="font-family: cursive;" />
+			<input type="text" placeholder="{{mood}}" name="mood" value="{{mood}}" placeholder-style="font-family: cursive;" />
 		</view>
 		<view class='card-container'></view>
-		<view class="item"><input type="text" name="title" placeholder="{{title}}" placeholder-style="font-family: cursive;" /></view>
+		<view class="item"><input type="text" name="title"  placeholder="{{title}}" value="{{title}}" placeholder-style="font-family: cursive;" /></view>
 		<scroll-view scroll-y="true">
 			<view class="main-body">
-				<textarea maxlength='-1' type="text" name="content" class="main-text" placeholder="{{content}}" placeholder-style="font-family: cursive;" />
+				<textarea maxlength='-1' type="text" name="content" class="main-text" placeholder="{{content}}" value="{{content}}" placeholder-style="font-family: cursive;" />
 				</view>
 		</scroll-view>
 		<button bindtap='fb' formType="submit">写完啦</button>

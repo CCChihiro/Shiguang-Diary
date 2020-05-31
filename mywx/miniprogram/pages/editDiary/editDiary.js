@@ -11,8 +11,9 @@ Page({
   isChecked1: false,
     timerBool: false,
     details:'',
+    user_id:'',
    content:'这是原来的正文1',diary_date:'原日期',weather:'原天气',mood:'原心情',authority:'true',
-    times:'true',year:'2015.5.10',imgbox:['../../images/cover.jpg'],background:'', title:'原题目',diary_id:''
+    times:'true',year:'2015.5.10',imgbox:['../../images/cover.jpg'],background:'', title:'原题目',diaryid:''
 
   },
   onLoad: function (options) {
@@ -27,7 +28,7 @@ Page({
           imgbox:app.globalData.imgbox,
           background:app.globalData.background, 
           title:app.globalData.title,
-         diary_id:app.globalData.diary_id,
+         diaryid:app.globalData.diaryid,
       })
       },
   datePickerBindchange:function(e){
@@ -140,6 +141,78 @@ Page({
     this.setData({  
       title,content,diary_date,weather,mood,authority,times,year,imgbox,background, details
     })  
+    let that = this
+    app.globalData.content = that.data.content  // 获取goodsList[index].num
+    app.globalData.diary_date = that.data.diary_date  // 获取goodsList[index].num
+    app.globalData.mood = that.data.mood  // 获取goodsList[index].num
+    app.globalData.authority = that.data.authority  // 获取goodsList[index].num
+    app.globalData.times = that.data.times  // 获取goodsList[index].num
+    app.globalData.year = that.data.year  // 获取goodsList[index].num
+    app.globalData.imgbox = that.data.imgbox  // 获取goodsList[index].num
+    app.globalData.background = that.data.background  // 获取goodsList[index].num
+    app.globalData.title = that.data.title  // 获取goodsList[index].num
+    app.globalData.weather = that.data.weather  // 获取goodsList[index].num
+    app.globalData.diaryid = that.data.diaryid
+    db.collection("Users").where({
+      openid: getApp().globalData.openid,
+    }).get({
+      success(res) {
+        console.log("请求成功", res)
+        that.setData({
+          user_id: res.data[0].id
+        })
+        wx.cloud.callFunction({
+          name: "deleteDiary",
+          data: {
+            user_id: that.data.user_id,
+            diary_id: that.data.diaryid
+          },
+          success(res){
+            console.log("请求云函数成功", res)
+          },
+          fail(err){
+            console.log("请求云函数失败", err)
+          }
+        })
+        wx.cloud.callFunction({
+          name: "deleteProperty",
+          data: {
+            user_id: that.data.user_id,
+            diary_id: that.data.diaryid
+          },
+          success(res){
+            console.log("请求云函数成功", res)
+          },
+          fail(err){
+            console.log("请求云函数失败", err)
+          }
+        })
+        wx.cloud.callFunction({
+          name: "addDiary",
+          data: {
+            diary_id: that.data.diaryid,
+            content: that.data.content,
+            user_id: that.data.user_id,
+            date: that.data.diary_date,
+            emotion: that.data.mood,
+            is_time: that.data.times,
+            permission: that.data.authority,
+            weather: that.data.weather,
+            year: that.data.year,
+            title: that.data.title
+          },
+          success(res) {
+            console.log("请求云函数成功", res)
+          },
+          fail(err) {
+            console.log("请求云函数失败", err)
+          }
+        })
+      },
+      fail(err) {
+        console.log("请求失败", err)
+      },
+    })
     },  
 
    //公开/隐私权限

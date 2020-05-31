@@ -157,12 +157,12 @@ Page({
             diary_id: my_id,
             content: that.data.content,
             user_id: that.data.user_id,
-            date: that.data.dateValue,
+            date: that.data.diary_date,
             emotion: that.data.mood,
             is_time: that.data.times,
             permission: that.data.authority,
             weather: that.data.weather,
-            year: that.data.timerValue,
+            year: that.data.year,
             title: that.data.title
           },
           success(res) {
