@@ -33,7 +33,6 @@ img_url:'',
       background:app.globalData.background, 
       title:app.globalData.title,
       diaryid:app.globalData.diaryid,
-      img_url:app.globalData.img_url
   })
   },
 
@@ -56,7 +55,6 @@ img_url:'',
         app.globalData.title= this.data.title  // 获取goodsList[index].num
         app.globalData.weather = this.data.weather  // 获取goodsList[index].num
         app.globalData.diaryid = this.data.diaryid  // 获取goodsList[index].num
-        app.globalData.img_url = this.data.img_url
     wx.navigateTo({
       url: '../editDiary/editDiary',
     })
