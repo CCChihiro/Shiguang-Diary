@@ -61,7 +61,12 @@ Page({
                   dict['year'] = res.result.data[0].year
                   dict['title'] = res.result.data[0].title
                   dict['weather'] = res.result.data[0].weather
-                  dict['img_url'] = res.result.data[0].img_url
+                  if(!res.result.data[0].img_url){
+                    dict['img_url'] = 'cloud://seey-zhou-wr3tn.7365-seey-zhou-wr3tn-1302195802/1590115601743.png'
+                  }
+                  else{
+                    dict['img_url'] = res.result.data[0].img_url
+                  }
                   my_list.push(dict)
                   }
                   
