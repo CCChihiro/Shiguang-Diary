@@ -18,6 +18,7 @@ Page({
     content: '这是正文1', diary_date: 1002, weather: '', mood: '', authority: '',
     times: '', year: '', imgbox: [], title: '', diary_id: ''
   },
+
   datePickerBindchange: function (e) {
     this.setData({
       dateValue: e.detail.value
@@ -280,7 +281,7 @@ Page({
 
 
 
-          user_id: res.data[0].id
+          user_id: res.data[0].user_id
 
 
 
@@ -352,7 +353,7 @@ Page({
 
 
 
-            console.log("请求云函数成功", res)
+            console.log("请求云函数addDiary成功", res)
 
 
 
