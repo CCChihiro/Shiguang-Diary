@@ -2,6 +2,9 @@
 page{
   font-family: cursive;
 }
+.Getuserinfo{
+  width: 100%;
+}
 .friends{
   padding-left: 50rpx;
     height: 140rpx;

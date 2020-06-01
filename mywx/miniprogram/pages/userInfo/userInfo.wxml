@@ -1,8 +1,8 @@
 <!--miniprogram/pages/userInfo/userInfo.wxml-->
 <label>
 <view class="friends" wx:if="{{!isHide}}">
-	<view class="userinfo">
-		<button bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" openType="getUserInfo"  style="background-image: url({{avatarUrl}})">点击授权登录</button>
+	<view class="Getuserinfo">
+		<button bindgetuserinfo="onGetUserInfo" class="userinfo-avatar" openType="getUserInfo"  style="background-image: url({{avatarUrl}});font-family: cursive;font-weight:normal">点击授权登录</button>
 	</view>
 </view>
 
@@ -29,15 +29,15 @@
 
 <view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
 	<view class='windowRow'>
-		<text class='userTitle'>修改昵称</text>
+		<text class='userTitle'>修改资料</text>
 		<view class='back' bindtap='back'>返回</view>
 	</view>
 	<form bindsubmit="formSubmit">
 		<view class='wishName'>
-			<input name="name" placeholder='{{name}}' placeholder-style='font-family: cursive;' class='wish_put'></input>
+			昵称<input name="name" placeholder='{{name}}'  placeholder-style='font-family: cursive;' class='wish_put'></input>
 		</view>
 		<view class='wishName'>
-			<input name="portrait" placeholder='{{portrait}}' placeholder-style='font-family: cursive;' class='wish_put'></input>
+			简介<input name="portrait" placeholder='{{portrait}}'  placeholder-style='font-family: cursive;' class='wish_put'></input>
 		</view>
 		<view class='wishbnt'>
 			<button class='wishbnt_bt' formType="submit">确定</button>
