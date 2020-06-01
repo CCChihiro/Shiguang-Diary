@@ -23,7 +23,7 @@ Page({
       success(res) {
         console.log("请求成功", res)
         that.setData({
-          user_id: res.data[0].id
+          user_id: res.data[0].user_id
         })
         console.log(that.data.user_id)
         wx.cloud.callFunction({
