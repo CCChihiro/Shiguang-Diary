@@ -132,9 +132,11 @@ Page({
             },
             success(res) {
                 console.log("请求云函数成功", res)
+                /*
                 that.setData({
                     cardInfoList: res.result.data
                 })
+                */
             },
             fail(err) {
                 console.log("请求云函数失败", err)
