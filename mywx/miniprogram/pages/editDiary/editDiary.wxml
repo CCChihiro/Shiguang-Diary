@@ -2,14 +2,13 @@
 	<form bindsubmit="formSubmit">
 		<!-- 图片 -->
 		<view class="images_box">
-			<block wx:key="imgbox" wx:for="{{imgbox}}">
+
 				<view class='img-box'>
 					<image class='img' src='{{imgbox}}'></image>
 					<view class='img-delect' data-deindex='{{index}}' bindtap='imgDelete1'>
 						<image class='img' src='../../images/delimg.jpg'></image>
 					</view>
 				</view>
-			</block>
 			<view class='img-box' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
 				<image class='img' src='../../images/addimage.jpg'></image>
 			</view>
