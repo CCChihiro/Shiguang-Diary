@@ -1,7 +1,7 @@
 <view>
 	<view wx:for="{{newFriend}}" class="friends" wx:for-item="newFriend" wx:key="index">
 		<view>
-			<image data-index="{{index}}"  class="head" src="../../images/code-cloud-callback-config.png">
+			<image data-index="{{index}}"  class="head" src="{{newFriend.head}}">
 			</image>
 		</view>
 		<view style="flex-direction:column" >
@@ -20,7 +20,7 @@
 <view>
 	<view wx:for="{{refFriend}}" class="friends" wx:for-item="refFriend" wx:key="index">
 		<view>
-			<image data-index="{{index}}"  bindtap="tofriendDiary" class="head" src="../../images/code-cloud-callback-config.png">
+			<image data-index="{{index}}"  bindtap="tofriendDiary" class="head" src="{{refFriend.head}}">
 			</image>
 		</view>
 		<view style="flex-direction:column" >

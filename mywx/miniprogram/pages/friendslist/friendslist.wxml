@@ -3,7 +3,7 @@
 
 	<view wx:for="{{array}}" class="friends" wx:for-item="myFriend" wx:key="index">
 		<view>
-			<image data-index="{{index}}"  bindtap="tofriendDiary" class="head" src="../../images/code-cloud-callback-config.png">
+			<image data-index="{{index}}"  bindtap="tofriendDiary" class="head" src="{{myFriend.head}}">
 			</image>
 		</view>
 		<view style="flex-direction:column" >
@@ -38,7 +38,7 @@
 
 <view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showFind}}'>
 	<view class='windowRow'>
-		<text class='userTitle'>查找好友</text>
+		<text class='userTitle'>添加好友</text>
 		<view class='back' bindtap='new_back'>返回</view>
 	</view>
 	<view class='wishName'>

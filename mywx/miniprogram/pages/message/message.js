@@ -4,12 +4,12 @@ Page({
   /* 页面的初始数据 */
 
   data: {
-    newFriend: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123', cover: '../../images/code-cloud-callback-config.png', new_message: 'true', status: '申请加你为好友' },
-    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', cover: '', new_message: 'true', status: '申请加你为好友' }
+    newFriend: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123', cover: '../../images/code-cloud-callback-config.png', new_message: 'true', status: '申请加你为好友',head:'../../images/head2.jpg' },
+    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', cover: '', new_message: 'true', status: '申请加你为好友',head:'../../images/head1.jpg' }
     ],
 
-    refFriend: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123', cover: '../../images/code-cloud-callback-config.png' },
-    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', cover: '' }
+    refFriend: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123',head:'../../images/head3.jpg', cover: '../../images/code-cloud-callback-config.png' },
+    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', cover: '',head:'../../images/code-cloud-callback-config.png' }
     ],
 
     //newFriend: [],

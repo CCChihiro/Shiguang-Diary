@@ -3,8 +3,8 @@ var app = getApp()
 Page({
   /* 页面的初始数据 */
   data: {
-    array: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123', cover: '../../images/code-cloud-callback-config.png' },
-    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', cover: '' }
+    array: [{ nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '123', head:'../../images/head5.jpg', cover: '../../images/code-cloud-callback-config.png' },
+    { nickname: '这是备注', name: 'apple', portrait: '来看看吧~', friend_id: '', head:'../../images/head4.jpg',cover: '' }
     ],
     temp_id: '',
     temp_nickname: '',

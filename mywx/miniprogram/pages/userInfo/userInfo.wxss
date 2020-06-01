@@ -49,7 +49,7 @@ line-height: 19px;
   }
   .update-container{
     width: 100rpx;
-margin-left: 200rpx;
+margin-left: 50rpx;
     text-align: right;
   }
   .update-button{
