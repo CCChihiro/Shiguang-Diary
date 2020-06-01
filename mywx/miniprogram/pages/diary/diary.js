@@ -217,7 +217,7 @@ var index = e.currentTarget.dataset.index
     app.globalData.background = this.data.cardInfoList[index].background  // 获取goodsList[index].num
     app.globalData.title = this.data.cardInfoList[index].title  // 获取goodsList[index].num
     app.globalData.weather = this.data.cardInfoList[index].weather  // 获取goodsList[index].num
-    app.globalData.diaryid = this.data.cardInfoList[index].diaryid  // 获取goodsList[index].num               
+    app.globalData.diaryid = this.data.cardInfoList[index].diary_id  // 获取goodsList[index].num               
     wx.navigateTo({
       url: '../editDiary/editDiary',
     })
@@ -231,20 +231,23 @@ var index = e.currentTarget.dataset.index
       showDelete: true,
       temp_id: id
     })
-
+    console.log(id)
+    console.log(that.data.cardInfoList)
+    console.log(that.data.cardInfoList[id])
     db.collection("Users").where({
       openid: getApp().globalData.openid,
     }).get({
       success(res) {
         console.log("请求成功", res)
         that.setData({
-          user_id: res.data[0].id
+          user_id: res.data[0].user_id
         })
+
         wx.cloud.callFunction({
           name: "deleteDiary",
           data: {
             user_id: that.data.user_id,
-            diary_id: that.data.diaryid
+            diary_id:  that.data.cardInfoList[id].diary_id
           },
           success(res) {
             console.log("请求云函数成功", res)
@@ -257,7 +260,7 @@ var index = e.currentTarget.dataset.index
           name: "deleteProperty",
           data: {
             user_id: that.data.user_id,
-            diary_id: that.data.diaryid
+            diary_id:  that.data.cardInfoList[id].diary_id
           },
           success(res) {
             console.log("请求云函数成功", res)
