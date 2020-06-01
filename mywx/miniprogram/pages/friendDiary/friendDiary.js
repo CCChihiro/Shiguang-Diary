@@ -18,7 +18,9 @@ Page({
             },
             { title: '这是题目3', content: '这是正文1', dairy_date: '2020.5.28', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },
             { title: '这是题目4', content: '这是正文1', dairy_date: '2020.5.29', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },
-            { title: '这是题目5', content: '这是正文1', dairy_date: '2020.5.30', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },]
+            { title: '这是题目5', content: '这是正文1', dairy_date: '2020.5.30', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },],
+        friend_id: '',
+        datalist: [],
     },
     touchstart(e) {
         this.setData({
@@ -116,14 +118,32 @@ Page({
             }, 50)
         }
     },
+
     onLoad: function () {
         this.setData({
-          friend_id:app.globalData.friend_diary,
+            friend_id: app.globalData.friend_diary,
         });
         console.log(this.data.friend_id);
+        var that = this
+        wx.cloud.callFunction({
+            name: "getFriendDiaryList",
+            data: {
+                friend_id: that.friend_id
+            },
+            success(res) {
+                console.log("请求云函数成功", res)
+                that.setData({
+                    datalist: res.result.data
+                })
+            },
+            fail(err) {
+                console.log("请求云函数失败", err)
+            }
+        })
+
     },
-     /***跳转写日记 */
-     towriteDiary() {
+    /***跳转写日记 */
+    towriteDiary() {
         wx.navigateTo({
             url: '../writeDiary/writeDiary',
         })
@@ -134,7 +154,7 @@ Page({
         })
     },
 
-/***删除日记 */
+    /***删除日记 */
     deleteDiary: function (e) {
         let index = e.currentTarget.dataset.index
         this.setData({
