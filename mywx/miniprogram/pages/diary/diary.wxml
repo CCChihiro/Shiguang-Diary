@@ -1,7 +1,7 @@
 <!--miniprogram/pages/diary/diary.wxml-->
 <view class='container'>
 	<view class='card_wrap'>
-		<view class='card_item'  bindtouchstart='touchstart' bindtouchend="touchend" animation="{{id === 0 ? animationData : ''}}" wx:for='{{cardInfoList}}' wx:for-index="id"  wx:for-item="item">
+		<view class='card_item'  bindtouchstart='touchstart' bindtouchend="touchend" animation="{{index === 0 ? animationData : ''}}" wx:for='{{cardInfoList}}' wx:key="index"  wx:for-item="item">
 			<view wx:if="{{item.title!=''}}" >
 			<view wx:if="{{item.id=='-1'}}">
 			<view style="width:600rpx;height:850rpx"><image class="cover" src="{{item.cover}}"></image></view>
@@ -19,8 +19,8 @@
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
 					<text>{{item.diary_date}}</text><text>\t\t</text>		
-		<text data-index="{{id}}"  bindtap='toeditDiary' style="margin-left:40rpx;margin-right:40rpx">\t编辑\t</text>
-     <text data-index="{{id}}"  bindtap='deleteDiary'>\t删除</text>
+		<text data-index="{{index}}"  bindtap='toeditDiary' style="margin-left:40rpx;margin-right:40rpx">\t编辑\t</text>
+     <text data-index="{{index}}"  bindtap='deleteDiary'>\t删除</text>
 				</view>
 				<view class="text-container"><text>{{item.weather}}</text><text style="margin-left:30rpx;">\t{{item.mood}}</text></view>
 				<view class="text-container"><text>{{item.title}}</text></view>

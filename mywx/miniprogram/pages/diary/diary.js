@@ -205,19 +205,19 @@ Page({
     })
   },
   toeditDiary(e) {
-    var id = e.currentTarget.dataset.index
-    console.log(id)
-    app.globalData.content = this.data.cardInfoList[id].content  // 获取goodsList[index].num
-    app.globalData.diary_date = this.data.cardInfoList[id].diary_date  // 获取goodsList[index].num
-    app.globalData.mood = this.data.cardInfoList[id].mood  // 获取goodsList[index].num
-    app.globalData.authority = this.data.cardInfoList[id].authority  // 获取goodsList[index].num
-    app.globalData.times = this.data.cardInfoList[id].times  // 获取goodsList[index].num
-    app.globalData.year = this.data.cardInfoList[id].year  // 获取goodsList[index].num
-    app.globalData.imgbox = this.data.cardInfoList[id].imgbox  // 获取goodsList[index].num
-    app.globalData.background = this.data.cardInfoList[id].background  // 获取goodsList[index].num
-    app.globalData.title = this.data.cardInfoList[id].title  // 获取goodsList[index].num
-    app.globalData.weather = this.data.cardInfoList[id].weather  // 获取goodsList[index].num
-    app.globalData.diaryid = this.data.cardInfoList[id].diaryid  // 获取goodsList[index].num               
+var index = e.currentTarget.dataset.index
+    console.log(index)
+    app.globalData.content = this.data.cardInfoList[index].content  // 获取goodsList[index].num
+    app.globalData.diary_date = this.data.cardInfoList[index].diary_date  // 获取goodsList[index].num
+    app.globalData.mood = this.data.cardInfoList[index].mood  // 获取goodsList[index].num
+    app.globalData.authority = this.data.cardInfoList[index].authority  // 获取goodsList[index].num
+    app.globalData.times = this.data.cardInfoList[index].times  // 获取goodsList[index].num
+    app.globalData.year = this.data.cardInfoList[index].year  // 获取goodsList[index].num
+    app.globalData.imgbox = this.data.cardInfoList[index].img_url  // 获取goodsList[index].num
+    app.globalData.background = this.data.cardInfoList[index].background  // 获取goodsList[index].num
+    app.globalData.title = this.data.cardInfoList[index].title  // 获取goodsList[index].num
+    app.globalData.weather = this.data.cardInfoList[index].weather  // 获取goodsList[index].num
+    app.globalData.diaryid = this.data.cardInfoList[index].diaryid  // 获取goodsList[index].num               
     wx.navigateTo({
       url: '../editDiary/editDiary',
     })
@@ -226,7 +226,7 @@ Page({
   /***删除日记 */
   deleteDiary: function (e) {
     let that = this
-    let id = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.index
     that.setData({
       showDelete: true,
       temp_id: id
