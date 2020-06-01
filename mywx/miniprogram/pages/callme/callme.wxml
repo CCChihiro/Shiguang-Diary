@@ -1,0 +1,33 @@
+<!--miniprogram/pages/callme/callme.wxml-->
+
+<view class="container">
+<view class="txt">
+		<text  >----团队成员----</text>
+
+</view>
+<view class="txt">
+		<text>赵咏欣\t周雪妍\t赵钰\t张心怡</text>
+</view>
+<view class="txt">
+		<text>----指导老师----</text>
+</view>
+<view class="txt">
+		<text>谢茂强\t邢树松\t师文轩</text>
+</view>
+
+<view class="txt">
+		<text>----致谢----</text>
+</view>
+
+<view class="txt">
+		<text>南开大学\t软件学院</text>
+</view>
+
+
+<view class="txt">
+		<text>----联系我们----</text>
+</view>
+<view class="txt">
+		<text>19191017@mail.nankai.edu.cn</text>
+</view>
+</view>
