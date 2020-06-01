@@ -9,12 +9,12 @@ Page({
         cardInfoList: [
             { title: '-1', id: '-1', cover: '../../images/cover.jpg' },/*封面占位：不能删*/
             {
-                title: '这是题目1', content: '这是正文1', weather: '雨', dairy_date: '2020.5.26', mood: '哭', authority: 'false', times: 'false', year: '5年后',
-                image: ['../../images/pic1.jpg', '../../images/pic1.jpg'], background: ''
+                title: '好友日记1', content: '这是正文1', weather: '雨', dairy_date: '2020.5.26', mood: '哭', authority: 'false', times: 'false', year: '5年后',
+                image: ['../../images/pic1.jpg', '../../images/background.png'], background: ''
             },
             {
-                title: '这是题目2', content: '这是正文1', dairy_date: '2020.5.27', weather: '', mood: '', authority: '', times: '', year: '',
-                image: ['../../images/code-cloud-callback-config.png', '../../images/code-cloud-callback-config.png'], background: ''
+                title: '好友日记2', content: '这是正文2', dairy_date: '2020.5.27', weather: '', mood: '', authority: '', times: '', year: '',
+                image: ['../../images/code-cloud-callback-config.png', '../../images/cover.jpg'], background: ''
             },
             { title: '这是题目3', content: '这是正文1', dairy_date: '2020.5.28', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },
             { title: '这是题目4', content: '这是正文1', dairy_date: '2020.5.29', weather: '', mood: '', authority: '', times: '', year: '', image: '', background: '' },

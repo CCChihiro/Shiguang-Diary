@@ -35,13 +35,13 @@ Page({
           },
           success(res) {
             console.log("请求云函数成功", res)
+            cardList = cardList.concat(res.result.data)
             that.setData({
               length: res.result.data.length,
-              cardInfoList: cardList.concat(res.result.data)
+              cardInfoList: cardList
             })
             var i = 1
-            var my_list = []
-            my_list.push(that.data.cardInfoList[0])
+            var my_list = cardList
             let a = async function (i, original_data, that) {
 
               return await wx.cloud.callFunction({
@@ -86,7 +86,6 @@ Page({
             that.setData({
               cardInfoList: my_list
             })
-            
           },
           fail(err) {
             console.log("请求云函数失败", err)

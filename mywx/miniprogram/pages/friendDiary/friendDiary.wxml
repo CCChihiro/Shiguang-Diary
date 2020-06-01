@@ -16,9 +16,8 @@
 					</scroll-view>
 				</view>
 				<view class="text-container" style="flex-direction:row;display: flex;" >
-					<text>{{item.dairy_date}}</text><text>\t星期？\t</text>		
-		<text data-index="{{index}}"  bindtap='towriteDiary'>\t编辑\t</text>
-     <text data-index="{{index}}"  bindtap='deleteDiary'>\t删除</text>
+					<text>{{item.dairy_date}}</text><text>\t\t</text>		
+
 				</view>
 				<view class="text-container"><text>{{item.weather}}</text><text>\t{{item.mood}}</text></view>
 				<view class="text-container"><text>{{item.title}}</text></view>
@@ -35,9 +34,7 @@
 	</view>
 </view>
 <view class="container-pen">
-	<view bindtap="towriteDiary">
-		<image class="pic-pen" src="../../images/pen.png"></image>
-	</view>
+
 	<view class="update-container">
 		<button class="update-button" style="width:180rpx;height:30rpx; background-color:rgb(221, 103, 203);color: #fbf1e8;  border:none;" open-type='share' plain='true'>生成</button>
 	</view>
@@ -45,14 +42,3 @@
 
 
 
-
-<!--删除日记-->
-<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showDelete}}'>
-	<view class='windowRow'>
-		<text class='userTitle'>确定删除日记？</text>
-		<view class='back' bindtap='del_back'>返回</view>
-	</view>
-	<view class='wishbnt'>
-		<button class='wishbnt_bt' bindtap='del_ok'>确定</button>
-	</view>
-</view>

@@ -92,6 +92,19 @@ Page({
     })
   },
   /** 点击确定按钮获取input值并且关闭弹窗 */
+  oktemp: function () {
+    console.log(this.data.temp_nickname)
+    var t1 = 'newFriend[' + this.data.temp_id +'].nickname'  // 获取goodsList[index].num
+    var t2='newFriend[' + this.data.temp_id +'].new_message'
+    var t3='newFriend[' + this.data.temp_id +'].status'
+    console.log(t2)
+    this.setData({
+     showModal:false,
+     [t1]:this.data.temp_nickname,
+     [t2]:false,
+     [t3]:'已同意'
+    })
+  },
   ok: function () {
     console.log(this.data.temp_nickname)
     let that = this
